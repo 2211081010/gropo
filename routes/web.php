@@ -3,10 +3,15 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\LoginController;
-
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\Admin\JenisKendaraanController;
+use App\Http\Controllers\Admin\LokasiController;
+use App\Http\Controllers\Admin\MemberSipController;
+use App\Http\Controllers\Admin\MetodePembayaranController;
+use App\Http\Controllers\Admin\PetugasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,7 +63,7 @@ Route::prefix('admin/kategori')
         Route::post('/update/{id}', 'update')->name('update');
         Route::get('/delete/{id}', 'delete')->name('delete');
     });
-    
+
 // Account
 Route::prefix('admin/account')
     ->name('admin.account.')
@@ -72,4 +77,74 @@ Route::prefix('admin/account')
         Route::post('/update/{id}', 'update')->name('update');
         Route::get('/delete/{id}', 'delete')->name('delete');
         Route::get('/reset/{id}', 'reset')->name('reset'); // Hanya untuk Account
+    });
+
+    // Petugas
+    Route::prefix('admin/petugas')
+    ->name('admin.petugas.')
+    ->middleware('cekLevel:1 2')
+    ->controller(PetugasController::class)
+    ->group(function () {
+        Route::get('/', 'read')->name('read');
+        Route::get('/add', 'add')->name('add');
+        Route::post('/create', 'create')->name('create');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::post('/update/{id}', 'update')->name('update');
+        Route::get('/delete/{id}', 'delete')->name('delete');
+    });
+
+    // Lokasi
+    Route::prefix('admin/lokasi')
+    ->name('admin.lokasi.')
+    ->middleware('cekLevel:1 2')
+    ->controller(LokasiController::class)
+    ->group(function () {
+        Route::get('/', 'read')->name('read');
+        Route::get('/add', 'add')->name('add');
+        Route::post('/create', 'create')->name('create');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::post('/update/{id}', 'update')->name('update');
+        Route::get('/delete/{id}', 'delete')->name('delete');
+    });
+
+    // Metode Pembayaran
+    Route::prefix('admin/metode_pembayaran')
+    ->name('admin.metode_pembayaran.')
+    ->middleware('cekLevel:1 2')
+    ->controller(MetodePembayaranController::class)
+    ->group(function () {
+        Route::get('/', 'read')->name('read');
+        Route::get('/add', 'add')->name('add');
+        Route::post('/create', 'create')->name('create');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::post('/update/{id}', 'update')->name('update');
+        Route::get('/delete/{id}', 'delete')->name('delete');
+    });
+
+// Jenis Kendaraan
+    Route::prefix('admin/jenis_kendaraan')
+    ->name('admin.jenis_kendaraan.')
+    ->middleware('cekLevel:1 2')
+    ->controller(JenisKendaraanController::class)
+    ->group(function () {
+        Route::get('/', 'read')->name('read');
+        Route::get('/add', 'add')->name('add');
+        Route::post('/create', 'create')->name('create');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::post('/update/{id}', 'update')->name('update');
+        Route::get('/delete/{id}', 'delete')->name('delete');
+    });
+
+    // Jenis Kendaraan
+    Route::prefix('admin/member_sip')
+    ->name('admin.member_sip.')
+    ->middleware('cekLevel:1 2')
+    ->controller(MemberSipController::class)
+    ->group(function () {
+        Route::get('/', 'read')->name('read');
+        Route::get('/add', 'add')->name('add');
+        Route::post('/create', 'create')->name('create');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::post('/update/{id}', 'update')->name('update');
+        Route::get('/delete/{id}', 'delete')->name('delete');
     });

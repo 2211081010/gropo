@@ -59,11 +59,11 @@
 		/>
 
 		<link rel="stylesheet" type="text/css" href="{{url('assets-admin')}}/src/plugins/datatables/css/dataTables.bootstrap4.min.css">
-		
+
 		<link rel="stylesheet" type="text/css" href="{{url('assets-admin')}}/src/plugins/datatables/css/responsive.bootstrap4.min.css">
 
 		<link rel="stylesheet" type="text/css" href="{{url('assets-admin')}}/vendors/styles/style.css" />
-		
+
 		<style type="text/css">
 			.table td {
 			    font-size: 14px;
@@ -372,12 +372,23 @@
 						</li>
                         <li class="dropdown">
 							<a href="javascript:;" class="dropdown-toggle">
+								<span class="micon dw dw-user1"></span><span class="mtext">Data Master</span>
+							</a>
+							<ul class="submenu">
+								<li><a href="/admin/lokasi" class="@if ($activePage == 'lokasi') active @endif">Data Lokasi</a></li>
+								<li><a href="/admin/petugas" class="@if ($activePage == 'petugas') active @endif">Data Petugas</a></li>
+                                <li><a href="/admin/metode_pembayaran" class="@if ($activePage == 'metode_pembayaran') active @endif">Data Metode Pembayaran</a></li>
+                                <li><a href="/admin/jenis_kendaraan" class="@if ($activePage == 'jenis_kendaraan') active @endif">Data Jenis Kendaraan</a></li>
+                                <li><a href="/admin/member_sip" class="@if ($activePage == 'member_sip') active @endif">Data Member</a></li>
+							</ul>
+						</li>
+                        <li class="dropdown">
+							<a href="javascript:;" class="dropdown-toggle">
 								<span class="micon dw dw-user1"></span><span class="mtext">Data Account</span>
 							</a>
 							<ul class="submenu">
 								<li><a href="/admin/account" class="@if ($activePage == 'account') active @endif">Data Administrator</a></li>
 								<li><a href="/admin/mandor" class="@if ($activePage == 'mandor') active @endif">Data Mandor</a></li>
-								<li><a href="/admin/petugas" class="@if ($activePage == 'petugas') active @endif">Data Petugas</a></li>
 							</ul>
 						</li>
 						<li>
@@ -434,7 +445,7 @@
 		<script>
 	    window.setTimeout(function() {
 	      $(".alert").fadeTo(500, 0).slideUp(500, function(){
-	        $(this).remove(); 
+	        $(this).remove();
 	      });
 	    }, 5000);
 	  </script>

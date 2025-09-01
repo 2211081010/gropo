@@ -15,9 +15,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('kategori', function (Blueprint $table) {
+        Schema::create('jenis_kendaraan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->string('jenis_kendaraan');
+            $table->string('tarif');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('NULL ON UPDATE CURRENT_TIMESTAMP'))->nullable();
         });
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kategori');
+        Schema::dropIfExists('jenis_kendaraan');
     }
 };

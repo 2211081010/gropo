@@ -13,7 +13,7 @@ class KategoriController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function read(){
         $kategori = DB::table('kategori')->orderBy('id','DESC')->get();
 
@@ -25,7 +25,7 @@ class KategoriController extends Controller
     }
 
     public function create(Request $request){
-        DB::table('kategori')->insert([  
+        DB::table('kategori')->insert([
             'nama' => $request->nama]);
 
         return redirect('/admin/kategori')->with("success","Data Berhasil Ditambah !");
@@ -33,12 +33,12 @@ class KategoriController extends Controller
 
     public function edit($id){
         $kategori = DB::table('kategori')->where('id',$id)->first();
-        
+
         return view('admin.kategori.edit',['kategori'=>$kategori]);
     }
 
     public function update(Request $request, $id) {
-        DB::table('kategori')  
+        DB::table('kategori')
             ->where('id', $id)
             ->update([
             'nama' => $request->nama]);

@@ -3,8 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
-
 
 return new class extends Migration
 {
@@ -15,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('kategori', function (Blueprint $table) {
+        Schema::create('lokasi_petugas', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->default(DB::raw('NULL ON UPDATE CURRENT_TIMESTAMP'))->nullable();
+            // relasi ke tabel petugas
+            $table->foreignId('id_petugas')->constrained('petugas')->onDelete('cascade');
+            $table->timestamps(); // otomatis created_at dan updated_at
         });
     }
 
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kategori');
+        Schema::dropIfExists('lokasi_petugas');
     }
 };
