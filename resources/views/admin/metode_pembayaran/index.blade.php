@@ -58,7 +58,7 @@
             @foreach($metode_pembayarans as $data)
             <tr>
                <td class="text-center">{{$no++}}</td>
-               <td>{{$data->nama}}</td>
+               <td>{{$data->nama_metode}}</td>
                <td class="text-center" width="15%">
                   <a href="/admin/metode_pembayaran/edit/{{$data->id}}"><button class="btn btn-success btn-xs"><i class="fa fa-edit" data-toggle="tooltip" data-placement="top" title="Edit Data"></i></button></a>
                   <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#data-{{$data->id}}"><i class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="Delete Data"></i></button>
@@ -82,7 +82,7 @@
             <hr>
             <div class="form-group" style="font-size: 17px;">
                <label for="exampleInputUsername1"> Metode Pembayaran</label>
-               <input class="form-control" value="{{$data->nama}}" readonly style="background-color: white;pointer-events: none;">
+               <input class="form-control" value="{{$data->nama_metode}}" readonly style="background-color: white;pointer-events: none;">
             </div>
             <div class="row mt-4">
                <div class="col-md-6">

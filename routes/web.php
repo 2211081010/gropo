@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\JenisKendaraanController;
+use App\Http\Controllers\Admin\KendaraanMemberController;
 use App\Http\Controllers\Admin\LokasiController;
 use App\Http\Controllers\Admin\MemberSipController;
 use App\Http\Controllers\Admin\MetodePembayaranController;
@@ -140,6 +141,20 @@ Route::prefix('admin/account')
     ->name('admin.member_sip.')
     ->middleware('cekLevel:1 2')
     ->controller(MemberSipController::class)
+    ->group(function () {
+        Route::get('/', 'read')->name('read');
+        Route::get('/add', 'add')->name('add');
+        Route::post('/create', 'create')->name('create');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::post('/update/{id}', 'update')->name('update');
+        Route::get('/delete/{id}', 'delete')->name('delete');
+    });
+
+// Kendaraan Member
+    Route::prefix('admin/kendaraan_member')
+    ->name('admin.kendaraan_member.')
+    ->middleware('cekLevel:1 2')
+    ->controller(KendaraanMemberController::class)
     ->group(function () {
         Route::get('/', 'read')->name('read');
         Route::get('/add', 'add')->name('add');

@@ -17,34 +17,40 @@ class MemberSipController extends Controller
     // Tampil semua member_sip
     public function read()
     {
-        $member_sip = DB::table('member_sip')->orderBy('id','DESC')->get();
-        return view('admin.member_sip.index', ['member_sip' => $member_sip]);
+        $member_sip = DB::table('member_sip')
+            ->join('metode_pembayarans', 'member_sip.id_metode_pembayaran', '=', 'metode_pembayarans.id')
+            ->select('member_sip.*', 'metode_pembayarans.nama_metode')
+            ->orderBy('member_sip.id', 'DESC')
+            ->get();
+
+        return view('admin.member_sip.index', compact('member_sip'));
     }
 
     // Form tambah
     public function add()
     {
-        return view('admin.member_sip.tambah');
+        $metode_pembayarans = DB::table('metode_pembayarans')->get();
+        return view('admin.member_sip.tambah', compact('metode_pembayarans'));
     }
 
     // Simpan data baru
     public function create(Request $request)
     {
         $request->validate([
-            'id_metode_pembayaran' => 'required|string|max:255',
+            'id_metode_pembayaran' => 'required|exists:metode_pembayarans,id',
             'nama' => 'required|string|max:255',
-            'nohp' => 'required|string|max:255',
+            'nohp' => 'required|string|max:20',
             'foto' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $path = $request->file('foto')->store('foto_member_sip', 'public');
 
-        DB::table('member_sip')->insert([
-            'id_metode_pembayaran' => $request->id_metode_pembayaran,
-            'nama' => $request->nama,
-            'nohp' => $request->nohp,
-            'foto' => $path
-        ]);
+            DB::table('member_sip')->insert([
+                'id_metode_pembayaran' => $request->id_metode_pembayaran,
+                'nama' => $request->nama,
+                'nohp' => $request->nohp,
+                'foto' => $path
+            ]);
 
         return redirect('/admin/member_sip')->with("success","Data Berhasil Ditambah !");
     }
@@ -53,20 +59,26 @@ class MemberSipController extends Controller
     public function edit($id)
     {
         $member_sip = DB::table('member_sip')->where('id', $id)->first();
-        return view('admin.member_sip.edit', ['member_sip' => $member_sip]);
+        $metode_pembayaran = DB::table('metode_pembayaran')->get();
+
+        return view('admin.member_sip.edit', compact('member_sip','metode_pembayaran'));
     }
 
     // Update data
     public function update(Request $request, $id)
     {
         $request->validate([
-            'id_metode_pembeyaran' => 'required|string|max:255',
+            'id_metode_pembayaran' => 'required|exists:metode_pembayaran,id',
             'nama' => 'required|string|max:255',
-            'nohp' => 'required|string|max:255',
+            'nohp' => 'required|string|max:20',
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $data = ['nama' => $request->nama];
+        $data = [
+            'id_metode_pembayaran' => $request->id_metode_pembayaran,
+            'nama' => $request->nama,
+            'nohp' => $request->nohp,
+        ];
 
         if ($request->hasFile('foto')) {
             $path = $request->file('foto')->store('foto_member_sip', 'public');

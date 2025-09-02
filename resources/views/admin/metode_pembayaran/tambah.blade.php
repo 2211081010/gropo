@@ -34,7 +34,7 @@
          {{ csrf_field() }}
          <div class="form-group">
             <label>Metode Pembayaran<span class="text-danger">*</span></label>
-            <input type="text" autofocus name="nama" required class="form-control" placeholder="Masukkan Nama Kategori .....">
+            <input type="text" autofocus name="nama_metode" required class="form-control" placeholder="Masukkan Nama Kategori .....">
          </div>
          <button type="submit" class="btn btn-primary mt-1 mr-2"><span class="icon-copy ti-save"></span> Tambah Data</button>
       </form>

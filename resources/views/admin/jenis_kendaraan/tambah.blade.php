@@ -32,17 +32,45 @@
       <hr style="margin-top: 0px">
       <form action="/admin/jenis_kendaraan/create" method="POST" enctype="multipart/form-data">
          {{ csrf_field() }}
+
+         <!-- Dropdown Jenis Kendaraan -->
          <div class="form-group">
             <label>Jenis Kendaraan<span class="text-danger">*</span></label>
-            <input type="text" autofocus name="jenis_kendaraan" required class="form-control" placeholder="Masukkan Jenis Kendaraan .....">
+            <select name="jenis_kendaraan" id="jenis_kendaraan" class="form-control" required>
+               <option value="">-- Pilih Jenis Kendaraan --</option>
+               <option value="Roda 2">Roda 2</option>
+               <option value="Roda 4">Roda 4</option>
+               <option value="Roda 6">Roda 6</option>
+            </select>
          </div>
+
+         <!-- Input Tarif (otomatis terisi) -->
          <div class="form-group">
             <label>Tarif<span class="text-danger">*</span></label>
-            <input type="text" autofocus name="tarif" required >
+            <input type="text" id="tarif" name="tarif" class="form-control" readonly required>
          </div>
+
          <button type="submit" class="btn btn-primary mt-1 mr-2"><span class="icon-copy ti-save"></span> Tambah Data</button>
       </form>
    </div>
    <!-- Striped table End -->
 </div>
+
+{{-- Script untuk otomatisasi tarif --}}
+<script>
+   document.getElementById('jenis_kendaraan').addEventListener('change', function () {
+      let tarifInput = document.getElementById('tarif');
+      let value = this.value;
+
+      if (value === 'Roda 2') {
+         tarifInput.value = 2000;
+      } else if (value === 'Roda 4') {
+         tarifInput.value = 4000;
+      } else if (value === 'Roda 6') {
+         tarifInput.value = 6000;
+      } else {
+         tarifInput.value = '';
+      }
+   });
+</script>
 @endsection

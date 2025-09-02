@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('metode_pembayarans', function (Blueprint $table) {
             $table->id(); // BIGINT UNSIGNED
-            $table->string('nama');
+            $table->string('nama_metode');
             $table->timestamps();
 
             $table->engine = 'InnoDB';

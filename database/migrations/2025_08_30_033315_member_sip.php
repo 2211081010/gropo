@@ -13,7 +13,7 @@ return new class extends Migration
             $table->id(); // BIGINT UNSIGNED
             $table->string('nama');
             $table->string('nohp');
-            $table->string('metode_pembayaran'); // ganti spasi menjadi underscore
+            $table->foreignId('id_metode_pembayaran'); // ganti spasi menjadi underscore
             $table->string('foto');
             $table->timestamps(); // otomatis created_at & updated_at
 
