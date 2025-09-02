@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\KendaraanMemberController;
 use App\Http\Controllers\Admin\LokasiController;
 use App\Http\Controllers\Admin\MemberSipController;
 use App\Http\Controllers\Admin\MetodePembayaranController;
+use App\Http\Controllers\Admin\PengunjungController;
 use App\Http\Controllers\Admin\PetugasController;
 
 /*
@@ -155,6 +156,20 @@ Route::prefix('admin/account')
     ->name('admin.kendaraan_member.')
     ->middleware('cekLevel:1 2')
     ->controller(KendaraanMemberController::class)
+    ->group(function () {
+        Route::get('/', 'read')->name('read');
+        Route::get('/add', 'add')->name('add');
+        Route::post('/create', 'create')->name('create');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::post('/update/{id}', 'update')->name('update');
+        Route::get('/delete/{id}', 'delete')->name('delete');
+    });
+
+// Pengunjung
+    Route::prefix('admin/pengunjung')
+    ->name('admin.pengunjung.')
+    ->middleware('cekLevel:1 2')
+    ->controller(PengunjungController::class)
     ->group(function () {
         Route::get('/', 'read')->name('read');
         Route::get('/add', 'add')->name('add');

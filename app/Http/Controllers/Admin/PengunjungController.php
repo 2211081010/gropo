@@ -7,39 +7,39 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
-class PengujungController extends Controller
+class PengunjungController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    // Tampil semua pengunjung dengan join
+    // Tampil semua pengunjung
     public function read()
     {
-        $pengunjung = DB::table('pengujung')
-            ->join('member_sip', 'pengujung.id_member', '=', 'member_sip.id')
-            ->join('metode_pembayaran', 'pengujung.id_metode_pembayaran', '=', 'metode_pembayaran.id')
+        $pengunjung = DB::table('pengunjung')
+            ->join('member_sip', 'pengunjung.id_member_sip', '=', 'member_sip.id')
+            ->join('metode_pembayarans', 'pengunjung.id_metode_pembayaran', '=', 'metode_pembayarans.id')
             ->select(
-                'pengujung.*',
-                'member_sip.nama_member',
-                'metode_pembayaran.nama_metode'
+                'pengunjung.*',
+                'member_sip.nama as nama_member',
+                'metode_pembayarans.nama_metode'
             )
-            ->orderBy('pengujung.id', 'DESC')
+            ->orderBy('pengunjung.id', 'DESC')
             ->get();
 
-        return view('admin.pengujung.index', ['pengunjung' => $pengunjung]);
+        return view('admin.pengunjung.index', ['pengunjung' => $pengunjung]);
     }
 
     // Form tambah
     public function add()
     {
-        $members = DB::table('member_sip')->get();
-        $metodes = DB::table('metode_pembayaran')->get();
+        $member_sip = DB::table('member_sip')->get();
+        $metode_pembayaran = DB::table('metode_pembayarans')->get();
 
-        return view('admin.pengujung.tambah', [
-            'members' => $members,
-            'metodes' => $metodes
+        return view('admin.pengunjung.tambah', [
+            'member_sip' => $member_sip,
+            'metode_pembayaran' => $metode_pembayaran
         ]);
     }
 
@@ -47,41 +47,49 @@ class PengujungController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'id_member' => 'required|exists:member_sip,id',
-            'id_metode_pembayaran' => 'required|exists:metode_pembayaran,id',
-            'tanggal' => 'required|string|max:255',
-            'jam_masuk' => 'required|string|max:255',
-            'jam_keluar' => 'required|string|max:255',
+            'id_member_sip' => 'required|exists:member_sip,id',
+            'id_metode_pembayaran' => 'required|exists:metode_pembayarans,id',
+            'tanggal' => 'required|date',
+            'jam_masuk' => 'required',
+            'jam_keluar' => 'required',
             'nopol' => 'required|string|max:255',
-            'bukti_pembayaran' => 'nullable|string|max:255',
-            'status' => 'required|string|max:255',
+            'bukti_pembayaran' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
+            'status' => 'required|string',
         ]);
 
-        DB::table('pengujung')->insert([
-            'id_member' => $request->id_member,
+        // Upload file jika ada
+        $bukti_pembayaran = null;
+        if ($request->hasFile('bukti_pembayaran')) {
+            $file = $request->file('bukti_pembayaran');
+            $filename = time().'_'.$file->getClientOriginalName();
+            $bukti_pembayaran = $file->storeAs('bukti_pembayaran', $filename, 'public');
+        }
+
+        DB::table('pengunjung')->insert([
+            'id_member_sip' => $request->id_member_sip,
             'id_metode_pembayaran' => $request->id_metode_pembayaran,
             'tanggal' => $request->tanggal,
             'jam_masuk' => $request->jam_masuk,
             'jam_keluar' => $request->jam_keluar,
             'nopol' => $request->nopol,
-            'bukti_pembayaran' => $request->bukti_pembayaran,
+            'bukti_pembayaran' => $bukti_pembayaran,
             'status' => $request->status,
         ]);
 
-        return redirect('/admin/pengujung')->with("success","Data Berhasil Ditambah !");
+        return redirect('/admin/pengunjung')->with("success","Data Berhasil Ditambah !");
     }
 
     // Form edit
     public function edit($id)
     {
-        $pengunjung = DB::table('pengujung')->where('id', $id)->first();
-        $members = DB::table('member_sip')->get();
-        $metodes = DB::table('metode_pembayaran')->get();
+        $pengunjung = DB::table('pengunjung')->where('id', $id)->first();
+        $member_sip = DB::table('member_sip')->get();
+        $metode_pembayaran = DB::table('metode_pembayarans')->get();
 
-        return view('admin.pengujung.edit', [
+        return view('admin.pengunjung.edit', [
             'pengunjung' => $pengunjung,
-            'members' => $members,
-            'metodes' => $metodes
+            'member_sip' => $member_sip,
+            'metode_pembayaran' => $metode_pembayaran
         ]);
     }
 
@@ -89,41 +97,51 @@ class PengujungController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'id_member' => 'required|exists:member_sip,id',
-            'id_metode_pembayaran' => 'required|exists:metode_pembayaran,id',
-            'tanggal' => 'required|string|max:255',
-            'jam_masuk' => 'required|string|max:255',
-            'jam_keluar' => 'required|string|max:255',
+            'id_member_sip' => 'required|exists:member_sip,id',
+            'id_metode_pembayaran' => 'required|exists:metode_pembayarans,id',
+            'tanggal' => 'required|date',
+            'jam_masuk' => 'required',
+            'jam_keluar' => 'required',
             'nopol' => 'required|string|max:255',
-            'bukti_pembayaran' => 'nullable|string|max:255',
-            'status' => 'required|string|max:255',
+            'bukti_pembayaran' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
+            'status' => 'required|string',
         ]);
 
         $data = [
-            'id_member' => $request->id_member,
+            'id_member_sip' => $request->id_member_sip,
             'id_metode_pembayaran' => $request->id_metode_pembayaran,
             'tanggal' => $request->tanggal,
             'jam_masuk' => $request->jam_masuk,
             'jam_keluar' => $request->jam_keluar,
             'nopol' => $request->nopol,
-            'bukti_pembayaran' => $request->bukti_pembayaran,
             'status' => $request->status,
         ];
 
-        DB::table('pengujung')->where('id', $id)->update($data);
+        // Upload file jika ada
+        if ($request->hasFile('bukti_pembayaran')) {
+            $pengunjung = DB::table('pengunjung')->where('id', $id)->first();
+            if ($pengunjung && $pengunjung->bukti_pembayaran) {
+                Storage::disk('public')->delete($pengunjung->bukti_pembayaran);
+            }
+            $file = $request->file('bukti_pembayaran');
+            $filename = time().'_'.$file->getClientOriginalName();
+            $data['bukti_pembayaran'] = $file->storeAs('bukti_pembayaran', $filename, 'public');
+        }
 
-        return redirect('/admin/pengujung')->with("success","Data Berhasil Diupdate !");
+        DB::table('pengunjung')->where('id', $id)->update($data);
+
+        return redirect('/admin/pengunjung')->with("success","Data Berhasil Diupdate !");
     }
 
     // Hapus data
     public function delete($id)
     {
-        $pengunjung = DB::table('pengujung')->where('id', $id)->first();
-        if ($pengunjung && $pengunjung->foto) {
-            Storage::disk('public')->delete($pengunjung->foto);
+        $pengunjung = DB::table('pengunjung')->where('id', $id)->first();
+        if ($pengunjung && $pengunjung->bukti_pembayaran) {
+            Storage::disk('public')->delete($pengunjung->bukti_pembayaran);
         }
 
-        DB::table('pengujung')->where('id', $id)->delete();
-        return redirect('/admin/pengujung')->with("success","Data Berhasil Dihapus !");
+        DB::table('pengunjung')->where('id', $id)->delete();
+        return redirect('/admin/pengunjung')->with("success","Data Berhasil Dihapus !");
     }
 }
