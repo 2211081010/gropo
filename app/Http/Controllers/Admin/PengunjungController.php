@@ -20,10 +20,16 @@ class PengunjungController extends Controller
         $pengunjung = DB::table('pengunjung')
             ->join('member_sip', 'pengunjung.id_member_sip', '=', 'member_sip.id')
             ->join('metode_pembayarans', 'pengunjung.id_metode_pembayaran', '=', 'metode_pembayarans.id')
+            ->join('lokasi', 'pengunjung.id_lokasi', '=', 'lokasi.id')
+            ->join('petugas', 'pengunjung.id_petugas', '=', 'petugas.id')
+            ->join('jenis_kendaraan', 'pengunjung.id_jenis_kendaraan', '=', 'jenis_kendaraan.id')
             ->select(
                 'pengunjung.*',
                 'member_sip.nama as nama_member',
-                'metode_pembayarans.nama_metode'
+                'metode_pembayarans.nama_metode',
+                'lokasi.nama',
+                'petugas.nama as nama_petugas',
+                'jenis_kendaraan.jenis_kendaraan as jenis_kendaraan'
             )
             ->orderBy('pengunjung.id', 'DESC')
             ->get();
@@ -36,10 +42,16 @@ class PengunjungController extends Controller
     {
         $member_sip = DB::table('member_sip')->get();
         $metode_pembayaran = DB::table('metode_pembayarans')->get();
+        $lokasi = DB::table('lokasi')->get();
+        $petugas = DB::table('petugas')->get();
+        $jenis_kendaraan = DB::table('jenis_kendaraan')->get();
 
         return view('admin.pengunjung.tambah', [
             'member_sip' => $member_sip,
-            'metode_pembayaran' => $metode_pembayaran
+            'metode_pembayaran' => $metode_pembayaran,
+            'lokasi' => $lokasi,
+            'petugas' => $petugas,
+            'jenis_kendaraan' => $jenis_kendaraan
         ]);
     }
 
@@ -49,6 +61,9 @@ class PengunjungController extends Controller
         $request->validate([
             'id_member_sip' => 'required|exists:member_sip,id',
             'id_metode_pembayaran' => 'required|exists:metode_pembayarans,id',
+            'id_lokasi' => 'required|exists:lokasi,id',
+            'id_petugas' => 'required|exists:petugas,id',
+            'id_jenis_kendaraan' => 'required|exists:jenis_kendaraan,id',
             'tanggal' => 'required|date',
             'jam_masuk' => 'required',
             'jam_keluar' => 'required',
@@ -68,6 +83,9 @@ class PengunjungController extends Controller
         DB::table('pengunjung')->insert([
             'id_member_sip' => $request->id_member_sip,
             'id_metode_pembayaran' => $request->id_metode_pembayaran,
+            'id_lokasi' => $request->id_lokasi,
+            'id_petugas' => $request->id_petugas,
+            'id_jenis_kendaraan' => $request->id_jenis_kendaraan,
             'tanggal' => $request->tanggal,
             'jam_masuk' => $request->jam_masuk,
             'jam_keluar' => $request->jam_keluar,
@@ -85,11 +103,17 @@ class PengunjungController extends Controller
         $pengunjung = DB::table('pengunjung')->where('id', $id)->first();
         $member_sip = DB::table('member_sip')->get();
         $metode_pembayaran = DB::table('metode_pembayarans')->get();
+        $lokasi = DB::table('lokasi')->get();
+        $petugas = DB::table('petugas')->get();
+        $jenis_kendaraan = DB::table('jenis_kendaraan')->get();
 
         return view('admin.pengunjung.edit', [
             'pengunjung' => $pengunjung,
             'member_sip' => $member_sip,
-            'metode_pembayaran' => $metode_pembayaran
+            'metode_pembayaran' => $metode_pembayaran,
+            'lokasi' => $lokasi,
+            'petugas' => $petugas,
+            'jenis_kendaraan' => $jenis_kendaraan
         ]);
     }
 
@@ -99,6 +123,9 @@ class PengunjungController extends Controller
         $request->validate([
             'id_member_sip' => 'required|exists:member_sip,id',
             'id_metode_pembayaran' => 'required|exists:metode_pembayarans,id',
+            'id_lokasi' => 'required|exists:lokasi,id',
+            'id_petugas' => 'required|exists:petugas,id',
+            'id_jenis_kendaraan' => 'required|exists:jenis_kendaraan,id',
             'tanggal' => 'required|date',
             'jam_masuk' => 'required',
             'jam_keluar' => 'required',
@@ -110,6 +137,9 @@ class PengunjungController extends Controller
         $data = [
             'id_member_sip' => $request->id_member_sip,
             'id_metode_pembayaran' => $request->id_metode_pembayaran,
+            'id_lokasi' => $request->id_lokasi,
+            'id_petugas' => $request->id_petugas,
+            'id_jenis_kendaraan' => $request->id_jenis_kendaraan,
             'tanggal' => $request->tanggal,
             'jam_masuk' => $request->jam_masuk,
             'jam_keluar' => $request->jam_keluar,

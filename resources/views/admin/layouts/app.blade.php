@@ -3,7 +3,7 @@
 	<head>
 		<!-- Basic Page Info -->
 		<meta charset="utf-8" />
-		<title>Absensi</title>
+		<title>Parkir</title>
 
 		<!-- Site favicon -->
 		<link
@@ -117,7 +117,7 @@
 		<div class="pre-loader">
 			<div class="pre-loader-box">
 				<div class="loader-logo">
-					<img src="{{url('assets-admin')}}/vendors/images/absensi.svg" alt="" />
+					<img src="{{url('assets-admin')}}/vendors/images/parkir.svg" alt="" />
 				</div>
 				<div class="loader-progress" id="progress_div">
 					<div class="bar" id="bar1"></div>
@@ -346,9 +346,9 @@
 		<div class="left-side-bar">
 			<div class="brand-logo">
 				<a href="/">
-					<img src="{{url('assets-admin')}}/vendors/images/absensi.svg" alt="" class="dark-logo" />
+					<img src="{{url('assets-admin')}}/vendors/images/parkir.svg" alt="" class="dark-logo" />
 					<img
-						src="{{url('assets-admin')}}/vendors/images/absensi-white.svg"
+						src="{{url('assets-admin')}}/vendors/images/parkin-white.svg"
 						alt=""
 						class="light-logo"
 					/>
@@ -360,30 +360,30 @@
 			<div class="menu-block customscroll">
 				<div class="sidebar-menu">
 					<ul id="accordion-menu">
-						<li>
-							<a href="/admin/home" class="dropdown-toggle no-arrow @if ($activePage == 'dashboard') active @endif">
-								<span class="micon bi bi-house"></span><span class="mtext">Dashboard</span>
-							</a>
-						</li>
-						<li>
-							<a href="/admin/kategori" class="dropdown-toggle no-arrow @if ($activePage == 'kategori') active @endif">
-								<span class="micon dw dw-book"></span><span class="mtext">Data Kategori</span>
-							</a>
-						</li>
-                        <li class="dropdown">
-							<a href="javascript:;" class="dropdown-toggle">
-								<span class="micon dw dw-user1"></span><span class="mtext">Data Master</span>
-							</a>
-							<ul class="submenu">
-								<li><a href="/admin/lokasi" class="@if ($activePage == 'lokasi') active @endif">Data Lokasi</a></li>
-								<li><a href="/admin/petugas" class="@if ($activePage == 'petugas') active @endif">Data Petugas</a></li>
-                                <li><a href="/admin/metode_pembayaran" class="@if ($activePage == 'metode_pembayaran') active @endif">Data Metode Pembayaran</a></li>
-                                <li><a href="/admin/jenis_kendaraan" class="@if ($activePage == 'jenis_kendaraan') active @endif">Data Jenis Kendaraan</a></li>
-                                <li><a href="/admin/member_sip" class="@if ($activePage == 'member_sip') active @endif">Data Member</a></li>
-                                <li><a href="/admin/kendaraan_member" class="@if ($activePage == 'kendaraan_member') active @endif">Data Kendaraan Member </a></li>
-                                <li><a href="/admin/pengunjung" class="@if ($activePage == 'Pengunjung') active @endif">Data Pengunjung </a></li>
-							</ul>
-							</ul>
+    <li>
+        <a href="/admin/home" class="dropdown-toggle no-arrow @if ($activePage == 'dashboard') active @endif">
+            <span class="micon bi bi-house"></span><span class="mtext">Dashboard</span>
+        </a>
+    </li>
+    <li>
+        <a href="/admin/kategori" class="dropdown-toggle no-arrow @if ($activePage == 'kategori') active @endif">
+            <span class="micon dw dw-book"></span><span class="mtext">Data Kategori</span>
+        </a>
+    </li>
+    <li class="dropdown">
+        <a href="javascript:;" class="dropdown-toggle @if (in_array($activePage, ['lokasi','petugas','metode_pembayaran','jenis_kendaraan','member_sip','kendaraan_member','Pengunjung'])) active @endif">
+            <span class="micon dw dw-user1"></span><span class="mtext">Data Master</span>
+        </a>
+        <ul class="submenu">
+            <li><a href="/admin/lokasi" class="@if ($activePage == 'lokasi') active @endif">Data Lokasi</a></li>
+            <li><a href="/admin/petugas" class="@if ($activePage == 'petugas') active @endif">Data Petugas</a></li>
+            <li><a href="/admin/metode_pembayaran" class="@if ($activePage == 'metode_pembayaran') active @endif">Data Metode Pembayaran</a></li>
+            <li><a href="/admin/jenis_kendaraan" class="@if ($activePage == 'jenis_kendaraan') active @endif">Data Jenis Kendaraan</a></li>
+            <li><a href="/admin/member_sip" class="@if ($activePage == 'member_sip') active @endif">Data Member</a></li>
+            <li><a href="/admin/kendaraan_member" class="@if ($activePage == 'kendaraan_member') active @endif">Data Kendaraan Member</a></li>
+            <li><a href="/admin/pengunjung" class="@if ($activePage == 'Pengunjung') active @endif">Data Pengunjung</a></li>
+        </ul>
+    </li>
 						</li>
                         <li class="dropdown">
 							<a href="javascript:;" class="dropdown-toggle">
@@ -419,9 +419,9 @@
 			<div class="pd-ltr-20">
 				@yield('content')
 				<div class="footer-wrap pd-20 mb-20 card-box">
-					Sistem Informasi Perpustakaan Online - Copyright © {{date('Y')}}
+					Sistem Informasi Parkir - Copyright © {{date('Y')}}
 					<a href="/" style="text-decoration: none" target="_blank"
-						>SMKN 1 Sintuk Toboh Gadang Padang Pariaman</a
+						></a
 					>
 				</div>
 			</div>

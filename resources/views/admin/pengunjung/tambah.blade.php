@@ -29,6 +29,36 @@
          </div>
 
          <div class="form-group">
+            <label>Lokasi<span class="text-danger">*</span></label>
+            <select name="id_lokasi" class="form-control" required>
+               <option value="">-- Pilih Lokasi --</option>
+               @foreach($lokasi as $l)
+                  <option value="{{ $l->id }}">{{ $l->nama_lokasi }}</option>
+               @endforeach
+            </select>
+         </div>
+
+         <div class="form-group">
+            <label>Petugas<span class="text-danger">*</span></label>
+            <select name="id_petugas" class="form-control" required>
+               <option value="">-- Pilih Petugas --</option>
+               @foreach($petugas as $p)
+                  <option value="{{ $p->id }}">{{ $p->nama }}</option>
+               @endforeach
+            </select>
+         </div>
+
+         <div class="form-group">
+            <label>Jenis Kendaraan<span class="text-danger">*</span></label>
+            <select name="id_jenis_kendaraan" class="form-control" required>
+               <option value="">-- Pilih Jenis Kendaraan --</option>
+               @foreach($jenis_kendaraan as $jk)
+                  <option value="{{ $jk->id }}">{{ $jk->nama }}</option>
+               @endforeach
+            </select>
+         </div>
+
+         <div class="form-group">
             <label>Tanggal<span class="text-danger">*</span></label>
             <input type="date" name="tanggal" class="form-control" required>
          </div>

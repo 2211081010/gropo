@@ -23,6 +23,23 @@ return new class extends Migration
                   ->constrained('metode_pembayarans')
                   ->onDelete('cascade');
 
+             // FK ke metode_pembayarans, boleh null
+            $table->foreignId('id_lokasi')
+                  ->nullable()
+                  ->constrained('lokasi')
+                  ->onDelete('cascade');
+            // FK ke metode_pembayarans, boleh null
+            $table->foreignId('id_petugas')
+                  ->nullable()
+                  ->constrained('petugas')
+                  ->onDelete('cascade');
+
+             // FK ke metode_pembayarans, boleh null
+            $table->foreignId('id_jenis_kendaraan')
+                  ->nullable()
+                  ->constrained('jenis_kendaraan')
+                  ->onDelete('cascade');
+            $table->date('tarif');
             $table->date('tanggal');
             $table->time('jam_masuk')->nullable();
             $table->time('jam_keluar')->nullable();
