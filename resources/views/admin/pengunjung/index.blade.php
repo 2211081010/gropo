@@ -34,7 +34,7 @@
             <td>{{ $no+1 }}</td>
             <td>{{ $data->nama_member }}</td>
             <td>{{ $data->nama_metode }}</td>
-            <td>{{ $data->nama_lokasi }}</td>
+            <td>{{ $data->nama }}</td>
             <td>{{ $data->nama_petugas }}</td>
             <td>{{ $data->jenis_kendaraan }}</td>
             <td>{{ $data->tanggal }}</td>

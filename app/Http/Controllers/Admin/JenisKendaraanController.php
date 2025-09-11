@@ -17,7 +17,7 @@ class JenisKendaraanController extends Controller
     // Tampil semua jenis_kendaraan
     public function read()
     {
-        $jenis_kendaraan = DB::table('jenis_kendaraan')->orderBy('id','DESC')->get();
+        $jenis_kendaraan = DB::table('jenis_kendaraan')->orderBy('id', 'DESC')->get();
         return view('admin.jenis_kendaraan.index', ['jenis_kendaraan' => $jenis_kendaraan]);
     }
 
@@ -33,18 +33,19 @@ class JenisKendaraanController extends Controller
         $request->validate([
             'jenis_kendaraan' => 'required|string|max:255',
             'tarif' => 'required|string|max:255',
-            //'foto' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            // 'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        //$path = $request->file('foto')->store('foto_jenis_kendaraan', 'public');
+        // Jika ada foto
+        // $path = $request->file('foto') ? $request->file('foto')->store('foto_jenis_kendaraan', 'public') : null;
 
         DB::table('jenis_kendaraan')->insert([
             'jenis_kendaraan' => $request->jenis_kendaraan,
             'tarif' => $request->tarif,
-            //'foto' => $path
+            // 'foto' => $path
         ]);
 
-        return redirect('/admin/jenis_kendaraan')->with("success","Data Berhasil Ditambah !");
+        return redirect('/admin/jenis_kendaraan')->with("success", "Data Berhasil Ditambah!");
     }
 
     // Form edit
@@ -62,24 +63,28 @@ class JenisKendaraanController extends Controller
             'tarif' => 'required|string|max:255',
         ]);
 
-        $data = ['jenis_kendaraan' => $request->jenis_kendaraan];
-        $data = ['tarif' => $request->tarif];
-
+        $data = [
+            'jenis_kendaraan' => $request->jenis_kendaraan,
+            'tarif' => $request->tarif,
+        ];
 
         DB::table('jenis_kendaraan')->where('id', $id)->update($data);
 
-        return redirect('/admin/jenis_kendaraan')->with("success","Data Berhasil Diupdate !");
+        return redirect('/admin/jenis_kendaraan')->with("success", "Data Berhasil Diupdate!");
     }
 
     // Hapus data
     public function delete($id)
     {
         $jenis_kendaraan = DB::table('jenis_kendaraan')->where('id', $id)->first();
-        if ($jenis_kendaraan && $jenis_kendaraan->foto) {
+
+        // Hapus file foto jika ada
+        if ($jenis_kendaraan && !empty($jenis_kendaraan->foto)) {
             Storage::disk('public')->delete($jenis_kendaraan->foto);
         }
 
         DB::table('jenis_kendaraan')->where('id', $id)->delete();
-        return redirect('/admin/jenis_kendaraan')->with("success","Data Berhasil Dihapus !");
+
+        return redirect('/admin/jenis_kendaraan')->with("success", "Data Berhasil Dihapus!");
     }
 }

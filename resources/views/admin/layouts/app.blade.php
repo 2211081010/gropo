@@ -382,6 +382,8 @@
             <li><a href="/admin/member_sip" class="@if ($activePage == 'member_sip') active @endif">Data Member</a></li>
             <li><a href="/admin/kendaraan_member" class="@if ($activePage == 'kendaraan_member') active @endif">Data Kendaraan Member</a></li>
             <li><a href="/admin/pengunjung" class="@if ($activePage == 'Pengunjung') active @endif">Data Pengunjung</a></li>
+            <li><a href="/admin/lokasi_petugas" class="@if ($activePage == 'lokasi_petugas') active @endif">Data Lokasi Petugas</a></li>
+
         </ul>
     </li>
 						</li>

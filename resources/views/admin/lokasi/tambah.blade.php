@@ -13,7 +13,7 @@
                <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="#">Data Master</a></li>
                   <li class="breadcrumb-item"><a href="/admin/lokasi">Data lokasi</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Tambah Data lokasi</li>
+                  <li class="breadcrumb-item active" aria-current="page">Tambah Data lokasi</li>    
                </ol>
             </nav>
          </div>

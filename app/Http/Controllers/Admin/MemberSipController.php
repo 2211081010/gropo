@@ -59,7 +59,7 @@ class MemberSipController extends Controller
     public function edit($id)
     {
         $member_sip = DB::table('member_sip')->where('id', $id)->first();
-        $metode_pembayaran = DB::table('metode_pembayaran')->get();
+        $metode_pembayaran = DB::table('metode_pembayarans')->get();
 
         return view('admin.member_sip.edit', compact('member_sip','metode_pembayaran'));
     }
@@ -68,7 +68,7 @@ class MemberSipController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'id_metode_pembayaran' => 'required|exists:metode_pembayaran,id',
+            'id_metode_pembayaran' => 'required|exists:metode_pembayarans,id',
             'nama' => 'required|string|max:255',
             'nohp' => 'required|string|max:20',
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',

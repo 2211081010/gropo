@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('lokasi_petugas', function (Blueprint $table) {
             $table->id();
             // relasi ke tabel petugas
+            $table->foreignId('id_lokasi')->constrained('lokasi')->onDelete('cascade');
             $table->foreignId('id_petugas')->constrained('petugas')->onDelete('cascade');
             $table->timestamps(); // otomatis created_at dan updated_at
         });

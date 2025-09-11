@@ -43,7 +43,9 @@ class LokasiController extends Controller
             'nama' => $request->nama,
             'alamat' => $request->alamat,
             'koordinat' => $request->koordinat,
-            'foto' => $path
+            'foto' => $path,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         return redirect('/admin/lokasi')->with("success","Data Berhasil Ditambah !");
@@ -66,11 +68,23 @@ class LokasiController extends Controller
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $data = ['nama' => $request->nama];
-        $data = ['alamat' => $request->alamat];
-        $data = ['koordinat' => $request->koordinat];
+        $lokasi = DB::table('lokasi')->where('id', $id)->first();
 
+        $data = [
+            'nama' => $request->nama,
+            'alamat' => $request->alamat,
+            'koordinat' => $request->koordinat,
+            'updated_at' => now(),
+        ];
+
+        // Jika ada file foto baru
         if ($request->hasFile('foto')) {
+            // Hapus foto lama dari storage
+            if ($lokasi && $lokasi->foto) {
+                Storage::disk('public')->delete($lokasi->foto);
+            }
+
+            // Simpan foto baru
             $path = $request->file('foto')->store('foto_lokasi', 'public');
             $data['foto'] = $path;
         }
