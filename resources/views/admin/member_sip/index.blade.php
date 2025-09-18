@@ -11,7 +11,7 @@
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Data Master</a></li>
+                  <li class="breadcrumb-item"><a href="#">Data Account</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Data Member Sip</li>
                </ol>
             </nav>
@@ -35,10 +35,10 @@
          <thead class="bg-primary text-white">
             <tr>
                <th width="5%">#</th>
+               <th>Foto</th>
                <th>Metode Pembayaran</th>
                <th>Nama Member</th>
                <th>No HP</th>
-               <th>Foto</th>
                <th class="text-center">Action</th>
             </tr>
          </thead>
@@ -46,9 +46,6 @@
             @foreach($member_sip as $no => $data)
             <tr>
                <td class="text-center">{{ $no+1 }}</td>
-               <td>{{ $data->nama_metode }}</td>
-               <td>{{ $data->nama }}</td>
-               <td>{{ $data->nohp }}</td>
                <td class="text-center">
                   @if($data->foto)
                      <img src="{{ asset('storage/'.$data->foto) }}" width="80" class="img-thumbnail">
@@ -56,9 +53,13 @@
                      <span class="text-muted">Tidak ada foto</span>
                   @endif
                </td>
+               <td>{{ $data->nama_metode }}</td>
+               <td>{{ $data->nama }}</td>
+               <td>{{ $data->nohp }}</td>
                <td class="text-center">
-                  <a href="/admin/member_sip/edit/{{$data->id}}" class="btn btn-success btn-xs"><i class="fa fa-edit"></i></a>
-                  <a href="/admin/member_sip/delete/{{$data->id}}" onclick="return confirm('Yakin hapus?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+                <a href="/admin/member_sip/show/{{$data->id}}" class="btn btn-info btn-xs" title="Detail"><i class="fa fa-eye"></i></a>
+                <a href="/admin/member_sip/edit/{{$data->id}}" class="btn btn-success btn-xs" title="Edit"><i class="fa fa-edit"></i></a>
+                <a href="/admin/member_sip/delete/{{$data->id}}" onclick="return confirm('Yakin hapus?')" class="btn btn-danger btn-xs" title="Hapus"><i class="fa fa-trash"></i></a>
                </td>
             </tr>
             @endforeach

@@ -151,6 +151,7 @@ Route::prefix('admin/account')
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::post('/update/{id}', 'update')->name('update');
         Route::get('/delete/{id}', 'delete')->name('delete');
+        Route::get('/show/{id}', 'show')->name('show');
     });
 
 // Kendaraan Member
@@ -165,6 +166,7 @@ Route::prefix('admin/account')
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::post('/update/{id}', 'update')->name('update');
         Route::get('/delete/{id}', 'delete')->name('delete');
+
     });
 
 // Pengunjung

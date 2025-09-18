@@ -26,6 +26,18 @@ class MemberSipController extends Controller
         return view('admin.member_sip.index', compact('member_sip'));
     }
 
+    // Menampilkan detail member_sip
+    public function show($id)
+    {
+        $member_sip = DB::table('member_sip')
+            ->join('metode_pembayarans', 'member_sip.id_metode_pembayaran', '=', 'metode_pembayarans.id')
+            ->where('member_sip.id', $id)
+            ->select('member_sip.*', 'metode_pembayarans.nama_metode')
+            ->first();
+
+        return view('admin.member_sip.detail', compact('member_sip'));
+    }
+
     // Form tambah
     public function add()
     {
@@ -45,12 +57,12 @@ class MemberSipController extends Controller
 
         $path = $request->file('foto')->store('foto_member_sip', 'public');
 
-            DB::table('member_sip')->insert([
-                'id_metode_pembayaran' => $request->id_metode_pembayaran,
-                'nama' => $request->nama,
-                'nohp' => $request->nohp,
-                'foto' => $path
-            ]);
+        DB::table('member_sip')->insert([
+            'id_metode_pembayaran' => $request->id_metode_pembayaran,
+            'nama' => $request->nama,
+            'nohp' => $request->nohp,
+            'foto' => $path
+        ]);
 
         return redirect('/admin/member_sip')->with("success","Data Berhasil Ditambah !");
     }
@@ -61,7 +73,7 @@ class MemberSipController extends Controller
         $member_sip = DB::table('member_sip')->where('id', $id)->first();
         $metode_pembayaran = DB::table('metode_pembayarans')->get();
 
-        return view('admin.member_sip.edit', compact('member_sip','metode_pembayaran'));
+        return view('admin.member_sip.edit', compact('member_sip', 'metode_pembayaran'));
     }
 
     // Update data

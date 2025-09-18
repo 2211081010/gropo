@@ -12,7 +12,7 @@
             <nav aria-label="breadcrumb" role="navigation">
                <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="#">Data Master</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Data Jenis Kendaraan</li>
+                  <li class="breadcrumb-item active" aria-current="page">Jenis Kendaraan</li>
                </ol>
             </nav>
          </div>
@@ -49,8 +49,8 @@
          <thead class="bg-primary text-white">
             <tr>
                <th width="5%">#</th>
-               <th>jenis_kendaraan</th>
-               <th>tarif</th>
+               <th>Jenis Kendaraan</th>
+               <th>Tarif</th>
                <th class="table-plus datatable-nosort text-center">Action</th>
             </tr>
          </thead>

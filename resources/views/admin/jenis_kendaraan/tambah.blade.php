@@ -19,7 +19,8 @@
          </div>
       </div>
    </div>
-   <!-- Striped table start -->
+
+   <!-- Form start -->
    <div class="pd-20 card-box mb-30">
       <div class="clearfix">
          <div class="pull-left">
@@ -30,47 +31,31 @@
          </div>
       </div>
       <hr style="margin-top: 0px">
+
       <form action="/admin/jenis_kendaraan/create" method="POST" enctype="multipart/form-data">
          {{ csrf_field() }}
+         <div class="row">
+            <!-- Kolom Kiri: Jenis Kendaraan -->
+            <div class="col-md-6">
+               <div class="form-group">
+                  <label>Jenis Kendaraan<span class="text-danger">*</span></label>
+                  <input type="text" name="jenis_kendaraan" class="form-control" placeholder="Masukkan Jenis Kendaraan..." required>
+               </div>
+            </div>
 
-         <!-- Dropdown Jenis Kendaraan -->
-         <div class="form-group">
-            <label>Jenis Kendaraan<span class="text-danger">*</span></label>
-            <select name="jenis_kendaraan" id="jenis_kendaraan" class="form-control select2" required>
-               <option value="">-- Pilih Jenis Kendaraan --</option>
-               <option value="Roda 2">Roda 2</option>
-               <option value="Roda 4">Roda 4</option>
-               <option value="Roda 6">Roda 6</option>
-            </select>
+            <!-- Kolom Kanan: Tarif -->
+            <div class="col-md-6">
+               <div class="form-group">
+                  <label>Tarif<span class="text-danger">*</span></label>
+                  <input type="number" id="tarif" name="tarif" class="form-control" placeholder="Masukkan Tarif..." required>
+               </div>
+            </div>
          </div>
 
-         <!-- Input Tarif (otomatis terisi) -->
-         <div class="form-group">
-            <label>Tarif<span class="text-danger">*</span></label>
-            <input type="text" id="tarif" name="tarif" class="form-control" readonly required>
-         </div>
-
-         <button type="submit" class="btn btn-primary mt-1 mr-2"><span class="icon-copy ti-save"></span> Tambah Data</button>
+         <button type="submit" class="btn btn-primary mt-2">
+            <span class="icon-copy ti-save"></span> Tambah Data
+         </button>
       </form>
    </div>
-   <!-- Striped table End -->
 </div>
-
-{{-- Script untuk otomatisasi tarif --}}
-<script>
-   document.getElementById('jenis_kendaraan').addEventListener('change', function () {
-      let tarifInput = document.getElementById('tarif');
-      let value = this.value;
-
-      if (value === 'Roda 2') {
-         tarifInput.value = 2000;
-      } else if (value === 'Roda 4') {
-         tarifInput.value = 4000;
-      } else if (value === 'Roda 6') {
-         tarifInput.value = 6000;
-      } else {
-         tarifInput.value = '';
-      }
-   });
-</script>
 @endsection
