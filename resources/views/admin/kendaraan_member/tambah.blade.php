@@ -36,7 +36,7 @@
 
          <div class="form-group">
             <label>Nama Member<span class="text-danger">*</span></label>
-            <select name="id_member_sip" class="form-control" required>
+            <select name="id_member_ship" class="form-control" required>
                 <option value="">-- Pilih Member --</option>
                 @foreach($members as $member)
                     <option value="{{ $member->id }}">{{ $member->nama }}</option>

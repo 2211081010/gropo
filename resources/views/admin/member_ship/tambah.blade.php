@@ -1,5 +1,5 @@
 @extends('admin.layouts.app', [
-    'activePage' => 'member_sip',
+    'activePage' => 'member_ship',
 ])
 @section('content')
 <div class="min-height-200px">
@@ -42,7 +42,7 @@
             </div>
         @endif
 
-        <form action="/admin/member_sip/create" method="POST" enctype="multipart/form-data">
+        <form action="/admin/member_ship/create" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
 
             <div class="row">
@@ -87,7 +87,7 @@
                 <button type="submit" class="btn btn-primary">
                     <i class="ti-save"></i> Simpan
                 </button>
-                <a href="/admin/member_sip" class="btn btn-secondary">Kembali</a>
+                <a href="/admin/member_ship" class="btn btn-secondary">Kembali</a>
             </div>
         </form>
     </div>

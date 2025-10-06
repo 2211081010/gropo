@@ -9,10 +9,10 @@
          @csrf
 
          <div class="form-group">
-            <label>Member<span class="text-danger">*</span></label>
-            <select name="id_member_sip" class="form-control" required>
+            <label>Member</label>
+            <select name="id_member_ship" class="form-control" required>
                <option value="">-- Pilih Member --</option>
-               @foreach($member_sip as $member)
+               @foreach($member_ship as $member)
                   <option value="{{ $member->id }}">{{ $member->nama }}</option>
                @endforeach
             </select>
@@ -64,17 +64,7 @@
          </div>
 
          <div class="form-group">
-            <label>Jam Masuk<span class="text-danger">*</span></label>
-            <input type="time" name="jam_masuk" class="form-control" required>
-         </div>
-
-         <div class="form-group">
-            <label>Jam Keluar<span class="text-danger">*</span></label>
-            <input type="time" name="jam_keluar" class="form-control" required>
-         </div>
-
-         <div class="form-group">
-            <label>No. Polisi<span class="text-danger">*</span></label>
+            <label>No Polisi<span class="text-danger">*</span></label>
             <input type="text" name="nopol" class="form-control" placeholder="Masukkan No. Polisi ..." required>
          </div>
 
@@ -87,8 +77,8 @@
             <label>Status<span class="text-danger">*</span></label>
             <select name="status" class="form-control" required>
                <option value="">-- Pilih Status --</option>
-               <option value="Masuk">Masuk</option>
-               <option value="Keluar">Keluar</option>
+               <option value="sudah_bayar">Sudah Bayar</option>
+               <option value="belum_bayar">Belum Bayar</option>
             </select>
          </div>
 

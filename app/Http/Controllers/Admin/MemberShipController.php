@@ -7,42 +7,42 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
-class MemberSipController extends Controller
+class MemberShipController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    // Tampil semua member_sip
+    // Tampil semua member_ship
     public function read()
     {
-        $member_sip = DB::table('member_sip')
-            ->join('metode_pembayarans', 'member_sip.id_metode_pembayaran', '=', 'metode_pembayarans.id')
-            ->select('member_sip.*', 'metode_pembayarans.nama_metode')
-            ->orderBy('member_sip.id', 'DESC')
+        $member_ship = DB::table('member_ship')
+            ->join('metode_pembayarans', 'member_ship.id_metode_pembayaran', '=', 'metode_pembayarans.id')
+            ->select('member_ship.*', 'metode_pembayarans.nama_metode')
+            ->orderBy('member_ship.id', 'DESC')
             ->get();
 
-        return view('admin.member_sip.index', compact('member_sip'));
+        return view('admin.member_ship.index', compact('member_ship'));
     }
 
-    // Menampilkan detail member_sip
+    // Menampilkan detail member_ship
     public function show($id)
     {
-        $member_sip = DB::table('member_sip')
-            ->join('metode_pembayarans', 'member_sip.id_metode_pembayaran', '=', 'metode_pembayarans.id')
-            ->where('member_sip.id', $id)
-            ->select('member_sip.*', 'metode_pembayarans.nama_metode')
+        $member_ship = DB::table('member_ship')
+            ->join('metode_pembayarans', 'member_ship.id_metode_pembayaran', '=', 'metode_pembayarans.id')
+            ->where('member_ship.id', $id)
+            ->select('member_ship.*', 'metode_pembayarans.nama_metode')
             ->first();
 
-        return view('admin.member_sip.detail', compact('member_sip'));
+        return view('admin.member_ship.detail', compact('member_ship'));
     }
 
     // Form tambah
     public function add()
     {
         $metode_pembayarans = DB::table('metode_pembayarans')->get();
-        return view('admin.member_sip.tambah', compact('metode_pembayarans'));
+        return view('admin.member_ship.tambah', compact('metode_pembayarans'));
     }
 
     // Simpan data baru
@@ -55,25 +55,25 @@ class MemberSipController extends Controller
             'foto' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $path = $request->file('foto')->store('foto_member_sip', 'public');
+        $path = $request->file('foto')->store('foto_member_ship', 'public');
 
-        DB::table('member_sip')->insert([
+        DB::table('member_ship')->insert([
             'id_metode_pembayaran' => $request->id_metode_pembayaran,
             'nama' => $request->nama,
             'nohp' => $request->nohp,
             'foto' => $path
         ]);
 
-        return redirect('/admin/member_sip')->with("success","Data Berhasil Ditambah !");
+        return redirect('/admin/member_ship')->with("success","Data Berhasil Ditambah !");
     }
 
     // Form edit
     public function edit($id)
     {
-        $member_sip = DB::table('member_sip')->where('id', $id)->first();
+        $member_ship = DB::table('member_ship')->where('id', $id)->first();
         $metode_pembayaran = DB::table('metode_pembayarans')->get();
 
-        return view('admin.member_sip.edit', compact('member_sip', 'metode_pembayaran'));
+        return view('admin.member_ship.edit', compact('member_ship', 'metode_pembayaran'));
     }
 
     // Update data
@@ -93,24 +93,24 @@ class MemberSipController extends Controller
         ];
 
         if ($request->hasFile('foto')) {
-            $path = $request->file('foto')->store('foto_member_sip', 'public');
+            $path = $request->file('foto')->store('foto_member_ship', 'public');
             $data['foto'] = $path;
         }
 
-        DB::table('member_sip')->where('id', $id)->update($data);
+        DB::table('member_ship')->where('id', $id)->update($data);
 
-        return redirect('/admin/member_sip')->with("success","Data Berhasil Diupdate !");
+        return redirect('/admin/member_ship')->with("success","Data Berhasil Diupdate !");
     }
 
     // Hapus data
     public function delete($id)
     {
-        $member_sip = DB::table('member_sip')->where('id', $id)->first();
-        if ($member_sip && $member_sip->foto) {
-            Storage::disk('public')->delete($member_sip->foto);
+        $member_ship = DB::table('member_ship')->where('id', $id)->first();
+        if ($member_ship && $member_ship->foto) {
+            Storage::disk('public')->delete($member_ship->foto);
         }
 
-        DB::table('member_sip')->where('id', $id)->delete();
-        return redirect('/admin/member_sip')->with("success","Data Berhasil Dihapus !");
+        DB::table('member_ship')->where('id', $id)->delete();
+        return redirect('/admin/member_ship')->with("success","Data Berhasil Dihapus !");
     }
 }

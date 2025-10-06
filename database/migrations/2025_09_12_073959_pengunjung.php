@@ -12,9 +12,9 @@ return new class extends Migration
             $table->id();
 
             // FK ke member_sip, boleh null
-            $table->foreignId('id_member_sip')
+            $table->foreignId('id_member_ship')
                   ->nullable()
-                  ->constrained('member_sip')
+                  ->constrained('member_ship')
                   ->onDelete('cascade');
 
             // FK ke metode_pembayarans, boleh null
@@ -39,10 +39,8 @@ return new class extends Migration
                   ->nullable()
                   ->constrained('jenis_kendaraan')
                   ->onDelete('cascade');
-            $table->date('tarif');
+            $table->double('tarif');
             $table->date('tanggal');
-            $table->time('jam_masuk')->nullable();
-            $table->time('jam_keluar')->nullable();
             $table->string('nopol', 20);
             $table->string('bukti_pembayaran')->nullable();
             $table->enum('status', ['sudah_bayar', 'belum_bayar'])->default('belum_bayar');

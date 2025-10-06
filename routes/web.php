@@ -12,7 +12,7 @@ use App\Http\Controllers\Admin\KantorController;
 use App\Http\Controllers\Admin\KendaraanMemberController;
 use App\Http\Controllers\Admin\LokasiController;
 use App\Http\Controllers\Admin\LokasiPetugasController;
-use App\Http\Controllers\Admin\MemberSipController;
+use App\Http\Controllers\Admin\MemberShipController;
 use App\Http\Controllers\Admin\MetodePembayaranController;
 use App\Http\Controllers\Admin\PengunjungController;
 use App\Http\Controllers\Admin\PetugasController;
@@ -140,10 +140,10 @@ Route::prefix('admin/account')
     });
 
     // Jenis Kendaraan
-    Route::prefix('admin/member_sip')
-    ->name('admin.member_sip.')
+    Route::prefix('admin/member_ship')
+    ->name('admin.member_ship.')
     ->middleware('cekLevel:1 2')
-    ->controller(MemberSipController::class)
+    ->controller(MemberShipController::class)
     ->group(function () {
         Route::get('/', 'read')->name('read');
         Route::get('/add', 'add')->name('add');

@@ -1,5 +1,5 @@
 @extends('admin.layouts.app', [
-'activePage' => 'member_sip',
+'activePage' => 'member_ship',
 ])
 @section('content')
 <div class="min-height-200px">
@@ -24,7 +24,7 @@
             <h2 class="text-primary h2"><i class="icon-copy dw dw-list"></i> List Data Member Sip</h2>
          </div>
          <div class="pull-right">
-            <a href="/admin/member_sip/add" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</a>
+            <a href="/admin/member_ship/add" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</a>
          </div>
       </div>
       <hr>
@@ -43,7 +43,7 @@
             </tr>
          </thead>
          <tbody>
-            @foreach($member_sip as $no => $data)
+            @foreach($member_ship as $no => $data)
             <tr>
                <td class="text-center">{{ $no+1 }}</td>
                <td class="text-center">
@@ -57,9 +57,9 @@
                <td>{{ $data->nama }}</td>
                <td>{{ $data->nohp }}</td>
                <td class="text-center">
-                <a href="/admin/member_sip/show/{{$data->id}}" class="btn btn-info btn-xs" title="Detail"><i class="fa fa-eye"></i></a>
-                <a href="/admin/member_sip/edit/{{$data->id}}" class="btn btn-success btn-xs" title="Edit"><i class="fa fa-edit"></i></a>
-                <a href="/admin/member_sip/delete/{{$data->id}}" onclick="return confirm('Yakin hapus?')" class="btn btn-danger btn-xs" title="Hapus"><i class="fa fa-trash"></i></a>
+                <a href="/admin/member_ship/show/{{$data->id}}" class="btn btn-info btn-xs" title="Detail"><i class="fa fa-eye"></i></a>
+                <a href="/admin/member_ship/edit/{{$data->id}}" class="btn btn-success btn-xs" title="Edit"><i class="fa fa-edit"></i></a>
+                <a href="/admin/member_ship/delete/{{$data->id}}" onclick="return confirm('Yakin hapus?')" class="btn btn-danger btn-xs" title="Hapus"><i class="fa fa-trash"></i></a>
                </td>
             </tr>
             @endforeach

@@ -1,5 +1,5 @@
 @extends('admin.layouts.app', [
-    'activePage' => 'member_sip',
+    'activePage' => 'member_ship',
 ])
 @section('content')
 <div class="min-height-200px">
@@ -89,7 +89,7 @@
             </div>
         @endif
 
-        <form action="/admin/member_sip/update/{{$member_sip->id}}" method="POST" enctype="multipart/form-data">
+        <form action="/admin/member_ship/update/{{$member_ship->id}}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
 
             <div class="row">
@@ -98,13 +98,13 @@
                     <div class="form-group">
                         <label>Nama Member <span class="text-danger">*</span></label>
                         <input type="text" name="nama" class="form-control" required
-                               value="{{ $member_sip->nama }}" placeholder="Masukkan Nama Member ...">
+                               value="{{ $member_ship->nama }}" placeholder="Masukkan Nama Member ...">
                     </div>
 
                     <div class="form-group">
                         <label>No Telepon <span class="text-danger">*</span></label>
                         <input type="text" name="nohp" class="form-control" required
-                               value="{{ $member_sip->nohp }}" placeholder="Masukkan No HP ...">
+                               value="{{ $member_ship->nohp }}" placeholder="Masukkan No HP ...">
                     </div>
                     <div class="form-group">
                         <label>Metode Pembayaran <span class="text-danger">*</span></label>
@@ -112,7 +112,7 @@
                             <option value="">-- Pilih Metode Pembayaran --</option>
                             @foreach($metode_pembayaran as $mp)
                                 <option value="{{ $mp->id }}"
-                                    {{ $member_sip->id_metode_pembayaran == $mp->id ? 'selected' : '' }}>
+                                    {{ $member_ship->id_metode_pembayaran == $mp->id ? 'selected' : '' }}>
                                     {{ $mp->nama_metode }}
                                 </option>
                             @endforeach
@@ -128,7 +128,7 @@
                         <small class="text-muted">Pilih foto baru jika ingin mengganti</small>
                          <div class="mb-2">
                             <img id="fotoPreview"
-                                 src="{{ $member_sip->foto ? asset('storage/'.$member_sip->foto) : 'https://via.placeholder.com/200x200?text=No+Image' }}"
+                                 src="{{ $member_ship->foto ? asset('storage/'.$member_ship->foto) : 'https://via.placeholder.com/200x200?text=No+Image' }}"
                                  alt="Foto Member"
                                  class="img-fluid rounded"
                                  style="width: 100%; max-width: 250px; height: auto; border: 1px solid #ddd;">
@@ -142,7 +142,7 @@
                 <button type="submit" class="btn btn-primary">
                     <i class="ti-save"></i> Update
                 </button>
-                <a href="/admin/member_sip" class="btn btn-secondary">Kembali</a>
+                <a href="/admin/member_ship" class="btn btn-secondary">Kembali</a>
             </div>
         </form>
     </div>

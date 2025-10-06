@@ -53,8 +53,6 @@
             <th>Petugas</th>
             <th>Jenis Kendaraan</th>
             <th>Tanggal</th>
-            <th>Jam Masuk</th>
-            <th>Jam Keluar</th>
             <th>NoPol</th>
             <th>Bukti Pembayaran</th>
             <th>Status</th>
@@ -67,12 +65,10 @@
             <td>{{ $no+1 }}</td>
             <td>{{ $data->nama_member }}</td>
             <td>{{ $data->nama_metode }}</td>
-            <td>{{ $data->nama }}</td>
+            <td>{{ $data->nama_lokasi }}</td> {{-- sebelumnya $data->nama --}}
             <td>{{ $data->nama_petugas }}</td>
             <td>{{ $data->jenis_kendaraan }}</td>
             <td>{{ $data->tanggal }}</td>
-            <td>{{ $data->jam_masuk }}</td>
-            <td>{{ $data->jam_keluar }}</td>
             <td>{{ $data->nopol }}</td>
             <td>
                 @if($data->bukti_pembayaran)

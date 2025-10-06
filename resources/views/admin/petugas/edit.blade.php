@@ -75,29 +75,22 @@
                 </div>
 
                 <!-- Kanan: Foto lama + Preview foto baru -->
-                <div class="col-md-6">
-                    <div class="form-group text-center">
-                        <label>Foto Lama</label>
-                        <div class="mb-2">
-                            <img id="fotoLama"
-                                 src="{{ $petugas->foto ? asset('uploads/petugas/'.$petugas->foto) : 'https://via.placeholder.com/200x200?text=No+Image' }}"
-                                 alt="Foto Lama Petugas"
-                                 class="img-fluid rounded"
-                                 style="width: 100%; max-width: 250px; height: auto; border: 1px solid #ddd;">
-                        </div>
+                            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="foto">Ganti Foto</label>
+                    <input type="file" name="foto" id="fotoInput" class="form-control mb-2">
+                    <small class="text-muted">Pilih foto baru jika ingin mengganti</small>
+                </div>
 
-                        <label>Ganti Foto</label>
-                        <input type="file" name="foto" id="fotoInput" class="form-control mb-2">
-                        <small class="text-muted">Pilih foto baru jika ingin mengganti</small>
-
-                        <div class="mt-2">
-                            <p class="mb-1">Preview Foto Baru:</p>
-                            <img id="fotoPreview"
-                                 src="#"
-                                 alt="Preview Foto"
-                                 style="width: 100%; max-width: 250px; height: auto; display: none;
-                                        border: 1px solid #ddd; border-radius: 8px;">
-                        </div>
+                <div class="row">
+                    <!-- Foto Lama -->
+                    <div class="col-md-6 text-center">
+                        <label class="d-block">Foto Lama</label>
+                        <img id="fotoLama"
+                            src="{{ $petugas->foto ? asset('uploads/petugas/'.$petugas->foto) : 'https://via.placeholder.com/200x200?text=No+Image' }}"
+                            alt="Foto Lama Petugas"
+                            class="img-thumbnail"
+                            style="width: 100%; max-width: 250px; height: auto;">
                     </div>
                 </div>
             </div>

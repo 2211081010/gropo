@@ -9,7 +9,7 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('member_sip', function (Blueprint $table) {
+        Schema::create('member_ship', function (Blueprint $table) {
             $table->id(); // BIGINT UNSIGNED
             $table->string('nama');
             $table->string('nohp');
@@ -23,6 +23,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('member_sip');
+        Schema::dropIfExists('member_ship');
     }
 };

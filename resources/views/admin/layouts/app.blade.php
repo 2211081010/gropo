@@ -371,7 +371,7 @@
         </a> --}}
     </li>
     <li class="dropdown">
-        <a href="javascript:;" class="dropdown-toggle @if (in_array($activePage, ['lokasi','petugas','metode_pembayaran','jenis_kendaraan','member_sip','kendaraan_member','Pengunjung'])) active @endif">
+        <a href="javascript:;" class="dropdown-toggle @if (in_array($activePage, ['lokasi','petugas','metode_pembayaran','jenis_kendaraan','member_ship','kendaraan_member','Pengunjung'])) active @endif">
             <span class="micon dw dw-user1"></span><span class="mtext">Data Master</span>
         </a>
         <ul class="submenu">
@@ -393,7 +393,7 @@
 							<ul class="submenu">
 								<li><a href="/admin/account" class="@if ($activePage == 'account') active @endif">Data Administrator</a></li>
                                 <li><a href="/admin/petugas" class="@if ($activePage == 'petugas') active @endif">Data Petugas</a></li>
-                                <li><a href="/admin/member_sip" class="@if ($activePage == 'member_sip') active @endif">Data Member</a></li>
+                                <li><a href="/admin/member_ship" class="@if ($activePage == 'member_ship') active @endif">Data Member</a></li>
 							</ul>
 						</li>
 						<li>

@@ -12,8 +12,8 @@ return new class extends Migration
             $table->id();
 
             // Foreign key ke member_sip
-            $table->foreignId('id_member_sip')
-                  ->constrained('member_sip')  // pastikan nama tabel sama persis
+            $table->foreignId('id_member_ship')
+                  ->constrained('member_ship')  
                   ->onDelete('cascade');
 
             // Foreign key ke jenis_kendaraan (perhatikan nama tabel singular)
