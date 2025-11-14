@@ -4,7 +4,7 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>Login | Absensi</title>
+	<title>Login | Gropo</title>
 
 	<!-- Site favicon -->
   <link rel="apple-touch-icon" sizes="180x180" href="{{url('assets-admin')}}/vendors/images/apple-touch-icon.png">
@@ -108,7 +108,7 @@
 	<script>
 	    window.setTimeout(function() {
 	      $(".alert").fadeTo(500, 0).slideUp(500, function(){
-	        $(this).remove(); 
+	        $(this).remove();
 	      });
 	    }, 3000);
 	  </script>

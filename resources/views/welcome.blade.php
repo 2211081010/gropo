@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Parkir</title>
+        <title>Gropo</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -46,8 +46,8 @@
                             <!-- content-wrapper start  -->
                             <div class="content-wrapper">
                                 <h1 class="wow fadeInDown" data-wow-delay=".2s">Coming Soon</h1>
-                                <p class="wow fadeInUp" data-wow-delay=".4s">🚀 Sistem Informasi parkir Segera Hadir! Inovasi untuk System yang lebih maju!</p>
-                                <div class="wow fadeInLeft" data-wow-delay=".2s" data-countdown="2025/09/09"></div>
+                                <p class="wow fadeInUp" data-wow-delay=".4s">🚀 Sistem Informasi Grobak Posko Segera Hadir! Inovasi untuk System yang lebih maju!</p>
+                                <div class="wow fadeInLeft" data-wow-delay=".2s" data-countdown="2025/11/15"></div>
                                 <!-- countdown ed  -->
                             </div>
                             <!-- content-wrapper end  -->

@@ -3,7 +3,7 @@
 	<head>
 		<!-- Basic Page Info -->
 		<meta charset="utf-8" />
-		<title>Parkir</title>
+		<title>Gropo</title>
 
 		<!-- Site favicon -->
 		<link
