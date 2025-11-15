@@ -195,7 +195,6 @@
     <div class="header">
         <div class="header-content">
             <img src="{{ asset('assets/img/logo.png') }}" alt="Logo">
-            {{-- <div style="font-size: 16px; color: white; margin-top: 5px;">Grobak Posko</div> --}}
         </div>
     </div>
 
@@ -236,7 +235,9 @@
             </div>
         </div>
 
-        <button class="btn-green">Lanjut</button>
+        <!-- BUTTON LANJUT PINDAH KE AKUN 2 -->
+        <button class="btn-green" onclick="goToAkun2()">Lanjut</button>
+
     </div>
 
 
@@ -298,7 +299,13 @@
         function focusToMap() {
             map.setView(centerPos, 16);
         }
+
+        /* PINDAH KE HALAMAN AKUN2 */
+        function goToAkun2() {
+            window.location.href = "{{ url('/admin/akun2') }}";
+        }
     </script>
 
 </body>
+
 </html>

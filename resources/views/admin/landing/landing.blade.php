@@ -89,22 +89,27 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
 
         <!-- Card 1 -->
-        <div class="icon-card card-blue-light">
-            <div class="w-32 h-32 mx-auto bg-white p-4 rounded-lg shadow-md flex items-center justify-center">
-                <img src="{{ asset('assets/img/lokasi.png') }}" alt="Buka lokasi">
-            </div>
-            <h2 class="text-xl font-semibold mt-4 text-gray-800">Buka lokasi</h2>
+       <a href="https://www.google.com/maps/search/?api=1&query=current+location" target="_blank">
+    <div class="icon-card card-blue-light cursor-pointer transition transform hover:scale-105">
+        <div class="w-32 h-32 mx-auto bg-white p-4 rounded-lg shadow-md flex items-center justify-center">
+            <img src="{{ asset('assets/img/lokasi.png') }}" alt="Buka lokasi">
         </div>
+        <h2 class="text-xl font-semibold mt-4 text-gray-800">Buka lokasi</h2>
+    </div>
+</a>
 
         <!-- Card 2 -->
-        <div class="icon-card card-blue-medium">
-            <div class="w-32 h-32 mx-auto bg-white p-4 rounded-lg shadow-md flex items-center justify-center">
-                <img src="{{ asset('assets/img/pesan.png') }}" alt="Pesan dan jemput">
-            </div>
-            <h2 class="text-xl font-semibold mt-4 text-gray-800">Pesan dan jemput</h2>
+        <a href="{{ url('/admin/lokasi') }}">
+    <div class="icon-card card-blue-medium cursor-pointer transition transform hover:scale-105">
+        <div class="w-32 h-32 mx-auto bg-white p-4 rounded-lg shadow-md flex items-center justify-center">
+            <img src="{{ asset('assets/img/pesan.png') }}" alt="Pesan dan jemput">
         </div>
+        <h2 class="text-xl font-semibold mt-4 text-gray-800">Pesan dan jemput</h2>
+    </div>
+</a>
 
         <!-- Card 3 -->
+        <a href="{{ url('/admin/akun2') }}">
         <div class="icon-card card-blue-dark">
             <div class="w-32 h-32 mx-auto bg-white p-4 rounded-lg shadow-md flex items-center justify-center">
                 <img src="{{ asset('assets/img/koin.png') }}" alt="Kumpulkan Koin">

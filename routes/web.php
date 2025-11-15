@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\Admin\Akun2Controller;
 use App\Http\Controllers\Admin\CoinController;
 use App\Http\Controllers\Admin\LandingController;
 use App\Http\Controllers\Admin\LokasiController as AdminLokasiController;
@@ -148,6 +149,10 @@ Route::prefix('admin')->group(function () {
     Route::prefix('akun')->name('akun.')->group(function () {
         Route::get('/', [AkunController::class, 'index'])->name('index');
         Route::post('/', [AkunController::class, 'store'])->name('store');
+    });
+     Route::prefix('akun2')->name('akun2.')->group(function () {
+        Route::get('/', [Akun2Controller::class, 'index'])->name('index');
+        Route::post('/', [Akun2Controller::class, 'store'])->name('store');
     });
 
     // routes/web.php

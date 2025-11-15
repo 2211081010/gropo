@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AkunController extends Controller
+class Akun2Controller extends Controller
 {
     public function index()
     {
@@ -16,7 +16,7 @@ class AkunController extends Controller
         // Dummy object sementara (ganti dengan data asli dari DB/Auth)
         $user = (object) [
             'email'    => 'user@example.com',
-            'saldo'    => 0,
+            'saldo'    => 5,
             'exp'      => 3,  // EXP saat ini
             'expMax'   => 100, // EXP maksimum untuk level ini
         ];
@@ -34,7 +34,7 @@ class AkunController extends Controller
             }
         }
 
-        return view('admin.akun.akun', compact('user'));
+        return view('admin.akun2.akun2', compact('user'));
     }
 
     public function store(Request $request)

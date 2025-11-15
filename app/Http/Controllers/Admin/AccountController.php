@@ -28,7 +28,7 @@ class AccountController extends Controller
         DB::table('users')->insert([
             'name' => $request->name,
             'password' => bcrypt($request->password),
-            'email' => $request->email,
+            'username' => $request->username,
             'level' => $request->level
         ]);
 
@@ -46,7 +46,7 @@ class AccountController extends Controller
             ->where('id', $id)
             ->update([
             'name' => $request->name,
-            'email' => $request->email,
+            'username' => $request->username,
             'level' => $request->level
         ]);
 

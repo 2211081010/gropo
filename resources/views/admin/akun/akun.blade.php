@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +13,6 @@
             font-family: Arial, sans-serif;
         }
 
-        /* HEADER BERGAMBAR + OVERLAY GELAP */
         .header {
             width: 100%;
             height: 370px;
@@ -20,16 +20,16 @@
             position: relative;
         }
 
-        /* Lapisan gelap agar mirip gambar */
         .header::after {
             content: "";
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.25);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.25);
         }
 
-        /* Logo di tengah */
         .logo {
             width: 160px;
             position: absolute;
@@ -39,27 +39,24 @@
             z-index: 2;
         }
 
-        /* CARD dibawah header */
-       .card-container {
-    width: 390px;
-    margin: -40px auto 50px; /* DULUNYA -50px → Sekarang dinaikkan lagi */
-    background: white;
-    border-radius: 14px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-    text-align: center;
-    overflow: hidden;
-    padding-bottom: 20px;
-    position: relative;
-    z-index: 5; /* agar muncul di atas header */
+        .card-container {
+            width: 390px;
+            margin: -40px auto 50px;
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            overflow: hidden;
+            padding-bottom: 20px;
+            position: relative;
+            z-index: 5;
         }
 
-        /* Header hijau tipis */
         .card-header {
             background: linear-gradient(#57ff71, #e8ffe9);
             padding: 20px;
         }
 
-        /* Foto profil */
         .profile-img {
             width: 85px;
             height: 85px;
@@ -70,7 +67,6 @@
             border: 3px solid white;
         }
 
-        /* Field Box */
         .field-box {
             display: flex;
             align-items: center;
@@ -93,7 +89,6 @@
             background: none;
         }
 
-        /* Tingkatan badge */
         .tingkatan-badge {
             padding: 6px 12px;
             border-radius: 6px;
@@ -101,12 +96,23 @@
             font-size: 13px;
         }
 
-        .bronze { background: #cd7f32; color: white; }
-        .silver { background: #c0c0c0; }
-        .gold { background: #ffd700; }
-        .platinum { background: #e5e4e2; }
+        .bronze {
+            background: #cd7f32;
+            color: white;
+        }
 
-        /* Progress bar EXP */
+        .silver {
+            background: #c0c0c0;
+        }
+
+        .gold {
+            background: #ffd700;
+        }
+
+        .platinum {
+            background: #e5e4e2;
+        }
+
         .progress-bar-container {
             width: 80%;
             margin: 10px auto;
@@ -121,7 +127,6 @@
         }
 
         .progress-fill {
-            width: 30%;
             height: 100%;
             background: #57ff71;
         }
@@ -132,7 +137,6 @@
             color: #555;
         }
 
-        /* Tombol */
         .submit-btn {
             background: #2196F3;
             color: white;
@@ -158,34 +162,30 @@
 
 <body>
 
-    <!-- HEADER -->
+    @php
+        $exp = $user->exp ?? 0;
+        $expMax = $user->expMax ?? 100;
+        $expPercentage = $expMax > 0 ? ($exp / $expMax) * 100 : 0;
+    @endphp
+
     <div class="header">
         <img src="{{ asset('assets/img/logo.png') }}" class="logo">
     </div>
 
-    <!-- CARD -->
     <div class="card-container">
 
         <div class="card-header">
             <h3 style="margin: 0;">Akun</h3>
         </div>
 
-        <img src="{{ asset('assets/img/propil.png') }}" class="profile-img">
-
-        <h3>{{ $user->username }}</h3>
         <small style="color: gray;">Google</small>
 
-        <!-- FORM -->
-        <form>
+        <!-- FORM UNTUK PINDAH KE HALAMAN COIN -->
+        <form action="{{ url('/admin/coin') }}" method="GET">
 
             <div class="field-box">
-                <img src="{{ asset('assets/img/propil.png') }}">
+                <img src="{{ asset('assets/img/profil.png') }}">
                 <input type="text" value="{{ $user->email }}" readonly>
-            </div>
-
-            <div class="field-box">
-                <img src="{{ asset('assets/img/wa.png') }}">
-                <input type="text" value="{{ $user->nomor }}" readonly>
             </div>
 
             <div class="field-box">
@@ -193,7 +193,6 @@
                 <input type="text" value="{{ $user->saldo }}" readonly>
             </div>
 
-            <!-- Tingkatan -->
             <div class="field-box">
                 <img src="{{ asset('assets/img/bronze.png') }}">
                 <span class="tingkatan-badge {{ strtolower($user->tingkatan) }}">
@@ -201,16 +200,14 @@
                 </span>
             </div>
 
-            <!-- Progress EXP 30% seperti screenshot -->
             <div class="progress-bar-container">
                 <div class="progress-bar">
-                    <div class="progress-fill"></div>
+                    <div class="progress-fill" style="width: {{ $expPercentage }}%;"></div>
                 </div>
-                <div class="exp-text">3% Exp</div>
+                <div class="exp-text">{{ round($expPercentage) }}% Exp</div>
             </div>
 
             <button class="submit-btn">Lanjut</button>
-
         </form>
     </div>
 
@@ -220,4 +217,5 @@
     </div>
 
 </body>
+
 </html>
