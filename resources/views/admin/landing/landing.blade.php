@@ -33,17 +33,9 @@
             <div class="flex-1"></div>
         </nav>
 
-        <!-- Logo & Text -->
+        <!-- Logo Gambar Center -->
         <div class="relative z-10 flex flex-col items-center mt-8">
-            <div class="w-24 h-24 p-4 rounded-full bg-green-500 flex items-center justify-center shadow-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.993-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                </svg>
-            </div>
-
-            <h1 class="text-white text-2xl font-semibold mt-2">GROPO</h1>
-            <p class="text-gray-300 text-sm">Grobak Posko</p>
+            <img src="{{ asset('assets/img/logo.png') }}" alt="GROPO Logo" class="mx-auto w-32 h-auto rounded-full shadow-lg">
         </div>
     </header>
 
@@ -54,7 +46,7 @@
             <!-- Card 1 -->
             <div class="icon-card card-blue-light p-6">
                 <div class="w-32 h-32 mx-auto bg-white p-4 rounded-lg shadow-md flex items-center justify-center">
-                    <img src="{{ asset('assets/icons/location.svg') }}" class="h-24" alt="Buka lokasi">
+                    <img src="{{ asset('assets/img/lokasi.png') }}" class="h-24" alt="Buka lokasi">
                 </div>
                 <h2 class="text-xl font-semibold mt-4 text-gray-800">Buka lokasi</h2>
             </div>
@@ -62,7 +54,7 @@
             <!-- Card 2 -->
             <div class="icon-card card-blue-medium p-6">
                 <div class="w-32 h-32 mx-auto bg-white p-4 rounded-lg shadow-md flex items-center justify-center">
-                    <img src="{{ asset('assets/icons/cart.svg') }}" class="h-24" alt="Pesan dan jemput">
+                    <img src="{{ asset('assets/img/pesan.png') }}" class="h-24" alt="Pesan dan jemput">
                 </div>
                 <h2 class="text-xl font-semibold mt-4 text-gray-800">Pesan dan jemput</h2>
             </div>
@@ -70,7 +62,7 @@
             <!-- Card 3 -->
             <div class="icon-card card-blue-dark p-6">
                 <div class="w-32 h-32 mx-auto bg-white p-4 rounded-lg shadow-md flex items-center justify-center">
-                    <img src="{{ asset('assets/icons/coin.svg') }}" class="h-24" alt="Kumpulkan Koin">
+                    <img src="{{ asset('assets/img/koin.png') }}" class="h-24" alt="Kumpulkan Koin">
                 </div>
                 <h2 class="text-xl font-semibold mt-4 text-gray-800">Kumpulkan Koin</h2>
             </div>

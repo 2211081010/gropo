@@ -15,9 +15,4 @@ class LandingController extends Controller
     {
         return view('admin.map.map');
     }
-
-    public function page3()
-    {
-    return view('admin.map1.map1');
-    }
 }

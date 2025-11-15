@@ -71,19 +71,19 @@
     }
 
     .top-bg::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image:
-            linear-gradient(to bottom, rgba(43, 121, 223, 0.2) 0%, rgba(181, 184, 189, 0.824) 100%),
-            url('https://i.imgur.com/8Qq7yqv.jpeg');
-        background-size: cover;
-        background-position: center;
-        opacity: 1;
-    }
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('{{ asset('assets/img/backround.png') }}'); /* hanya gambar */
+    background-size: cover;       /* gambar menutupi seluruh area */
+    background-position: center;  /* posisi tengah */
+    background-repeat: no-repeat; /* jangan ulangi gambar */
+    z-index: 0;
+}
+
 
     .gropo-logo-container {
         position: relative;

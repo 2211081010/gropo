@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\LandingController;
 use App\Http\Controllers\Admin\LokasiController as AdminLokasiController;
+use App\Http\Controllers\Admin\Map1Controller;
 use App\Http\Controllers\LokasiController;
 
 /*
@@ -88,7 +89,7 @@ Route::prefix('admin/account')
             ->name('map.page2');
 
         // Halaman landing ketiga
-        Route::get('/map1/page3', [LandingController::class, 'page3'])
+         Route::get('/map1/page3', [LandingController::class, 'page3'])
             ->name('map1.page3');
     });
 
@@ -100,14 +101,20 @@ Route::prefix('admin/account')
         Route::get('/lokasi', [AdminLokasiController::class, 'index'])
             ->name('lokasi');
 });
-
 Route::prefix('admin')
     ->name('admin.')
     ->group(function () {
+        Route::get('/map1', [Map1Controller::class, 'index'])
+            ->name('map1');
+});
 
-        // Halaman landing pertama
-        Route::get('/landing', [LandingController::class, 'index'])
-            ->name('landing');
+// Route::prefix('admin')
+//     ->name('admin.')
+//     ->group(function () {
+
+//         // Halaman landing pertama
+//         Route::get('/landing', [LandingController::class, 'index'])
+//             ->name('landing');
 
 
-    });
+

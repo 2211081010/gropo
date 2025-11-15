@@ -60,7 +60,6 @@
         .top-bg {
             width: 100%;
             height: 400px;
-            background: #2b3543;
             position: relative;
             overflow: hidden;
             display: flex;
@@ -75,12 +74,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image:
-                linear-gradient(to bottom, rgba(35, 41, 49, 0.2), rgba(35, 41, 49, 0.1)),
-                url('https://i.imgur.com/8Qq7yqv.jpeg');
+            background-image: url('https://i.imgur.com/8Qq7yqv.jpeg'); /* hanya gambar */
             background-size: cover;
             background-position: center;
-            opacity: 1;
+            background-repeat: no-repeat;
+            z-index: 0;
         }
 
         /* === LOGO GROPO TENGAH === */
@@ -151,12 +149,12 @@
 
         .location-button {
             width: 100%;
-            background: #e0e0e0;
+            background: #37c7ba;
             border: none;
             padding: 12px;
             border-radius: 8px;
             margin-top: 15px;
-            color: #555;
+            color: white;
             font-size: 17px;
             cursor: pointer;
             font-weight: bold;
@@ -332,11 +330,12 @@ document.getElementById('bukaLokasi').addEventListener('click', function() {
 function showPosition(position) {
     const button = document.getElementById('bukaLokasi');
 
-    alert("Lokasi Anda Terdeteksi!");
-
     button.textContent = 'Lokasi Terdeteksi!';
     button.style.background = '#37c7ba';
     button.style.color = 'white';
+
+    // redirect ke halaman map/page2
+    window.location.href = "map/page2";
 }
 
 function showError(error) {

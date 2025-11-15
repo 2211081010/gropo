@@ -79,6 +79,7 @@
             background: #000;
             color: white;
             font-weight: bold;
+            cursor: pointer;
         }
 
         /* MAP CONTAINER */
@@ -119,6 +120,7 @@
             padding: 7px 15px;
             border-radius: 10px;
             font-weight: bold;
+            cursor: pointer;
         }
 
         .status-red {
@@ -177,7 +179,7 @@
     <!-- SMALL PREVIEW -->
     <div class="preview-box">
         <img src="https://i.ibb.co/8z2TBqy/location-thumb.jpg">
-        <button class="btn-preview">Buka Lokasi</button>
+        <button class="btn-preview" id="previewBtn">Buka Lokasi</button>
     </div>
 
     <!-- MAIN MAP -->
@@ -246,7 +248,7 @@
         // INIT MAP
         var map = L.map('map').setView([-0.9471, 100.4172], 13); // Padang default
 
-        // Tile layer dark theme
+        // Tile layer
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19
         }).addTo(map);
@@ -267,8 +269,8 @@
                     var lat = pos.coords.latitude;
                     var lon = pos.coords.longitude;
 
-                    userMarker.setLatLng([lat, lon]); // update icon position
-                    map.setView([lat, lon]); // auto follow
+                    userMarker.setLatLng([lat, lon]);
+                    map.setView([lat, lon]);
                 },
                 function (err) {
                     console.log("GPS Error:", err);
@@ -293,7 +295,19 @@
         ];
 
         poskoList.forEach(p => L.marker(p, { icon: poskoIcon }).addTo(map));
-    </script>
-</body>
 
+        // REDIRECT WHEN POSKO AVAILABLE IS CLICKED
+        document.querySelectorAll('.status-green').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                window.location.href = 'map1';
+            });
+        });
+
+        // OPTIONAL: Redirect preview button
+        document.getElementById('previewBtn').addEventListener('click', function() {
+            window.location.href = 'map1/page3';
+        });
+    </script>
+
+</body>
 </html>
