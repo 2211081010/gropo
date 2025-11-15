@@ -77,7 +77,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('{{ asset('assets/img/backround.png') }}'); /* hanya gambar */
+    background-image: url('{{ asset('assets/img/backraound.png') }}'); /* hanya gambar */
     background-size: cover;       /* gambar menutupi seluruh area */
     background-position: center;  /* posisi tengah */
     background-repeat: no-repeat; /* jangan ulangi gambar */
@@ -95,7 +95,7 @@
     .gropo-icon {
         width: 110px;
         height: 110px;
-        background-image: url('https://i.imgur.com/XFm6f6S.png');
+        background-image: url('{{ asset('assets/img/logo.png') }}');
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -142,7 +142,7 @@
         background: #e4e4e4;
         border-radius: 50%;
         margin: 0 auto 30px;
-        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23b8b8b8" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.38 0 2.5 1.12 2.5 2.5S13.38 10 12 10 9.5 8.88 9.5 7.5 10.62 5 12 5zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.88 6-3.88s5.97 1.89 6 3.88c-1.29 1.94-3.5 3.22-6 3.22z"/></svg>');
+        background-image: url('{{ asset('assets/img/profil.png') }}');
         background-size: 70%;
         background-repeat: no-repeat;
         background-position: center;
@@ -220,8 +220,6 @@
     <div class="top-bg">
         <div class="gropo-logo-container">
             <div class="gropo-icon"></div>
-            <div class="gropo-logo-text">GROPO</div>
-            <div class="gropo-logo-subtext">Grobak Posko</div>
         </div>
     </div>
 
@@ -282,7 +280,7 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
     // Di sini bisa diganti validasi backend jika sudah ada server
     if(email === "user@example.com" && password === "123456") {
         // Redirect ke landing page setelah login
-        window.location.href = "/admin/landing";
+        window.location.href = "/admin/akun";
     } else {
         alert("Email atau password salah!");
     }

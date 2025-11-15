@@ -1,6 +1,6 @@
 /* Header background */
 .header-bg {
-    background-color: #0b1a2e;
+    background-color: #07080a;
     background-image: url('../img/header-texture.svg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -9,7 +9,7 @@
 
 /* Icon cards */
 .icon-card {
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1),
+    box-shadow: 0 10px 15px -3px rgba(88, 5, 5, 0.1),
                 0 4px 6px -2px rgba(0,0,0,0.05);
     transition: transform 0.3s ease;
 }

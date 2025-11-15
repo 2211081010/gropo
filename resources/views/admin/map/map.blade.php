@@ -1,161 +1,83 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GROPO - Grobak Posko</title>
 
-    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
     <style>
-        body {
-            margin: 0;
-            font-family: Arial;
-            background: #f6f6f6;
-        }
+        body { margin: 0; font-family: Arial; background: #f6f6f6; }
 
-        /* NAVBAR */
         .navbar {
-            background: #0A0F1C;
-            color: white;
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
+            background: #0A0F1C; color: white; padding: 15px 20px;
+            display: flex; align-items: center;
         }
+        .menu-btn { font-size: 28px; cursor: pointer; margin-right: 20px; }
+        .nav-title { font-weight: bold; font-size: 20px; }
+        .nav-subtitle { font-size: 11px; margin-top: -3px; }
 
-        .menu-btn {
-            font-size: 28px;
-            cursor: pointer;
-            margin-right: 20px;
-        }
-
-        .nav-title {
-            font-weight: bold;
-            font-size: 20px;
-        }
-
-        .nav-subtitle {
-            font-size: 11px;
-            margin-top: -3px;
-        }
-
-        /* HERO */
+        /* HERO BACKGROUND */
         .hero {
-            background: url('https://i.ibb.co/19qvFQH/silk-bg.jpg');
-            background-size: cover;
-            background-position: center;
-            height: 170px;
+            background: url('{{ asset("assets/img/backraound.png") }}') no-repeat center/cover;
+            height: 220px;
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
         }
-
         .hero img {
-            width: 130px;
+            width: 140px;
+            z-index: 2;
         }
 
-        /* SMALL PREVIEW CARD */
+        /* PREVIEW CARD */
         .preview-box {
-            margin: 10px;
+            position: absolute;
+            bottom: -45px;
             background: #fff;
-            width: 200px;
-            border-radius: 10px;
-            border: 2px solid #ccc;
+            width: 150px;
+            border-radius: 12px;
+            border: 3px solid #3b82f6;
             overflow: hidden;
-            margin-left: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 3;
+            text-align: center;
+            left: 20px !important;
         }
 
-        .preview-box img {
-            width: 100%;
-        }
-
+        .preview-box img { width: 100%; }
         .btn-preview {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            background: #000;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
+            width: 100%; padding: 10px; border: none;
+            background: #3b82f6; color: white;
+            font-weight: bold; cursor: pointer;
         }
 
-        /* MAP CONTAINER */
-        #map {
-            height: 250px;
-            width: 100%;
-            border-radius: 10px;
-        }
-
+        /* MAP */
         .map-container {
-            margin: 20px;
-            background: white;
-            padding: 15px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 60px 20px 20px 20px;
+            background: white; padding: 15px;
+            border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        /* LIST POSKO */
+        #map { height: 260px; width: 100%; border-radius: 10px; }
+
+        /* LIST */
         .list-container {
-            margin: 20px;
-            background: #fff;
-            padding: 15px;
+            margin: 20px; background: #fff; padding: 15px;
             border-radius: 15px;
         }
 
         .posko-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 2px solid #ddd;
-            margin-bottom: 15px;
-            padding: 10px;
-            border-radius: 12px;
+            display: flex; justify-content: space-between; align-items: center;
+            border: 2px solid #ddd; margin-bottom: 15px;
+            padding: 10px; border-radius: 12px; transition: 0.2s;
         }
 
         .status-green {
-            background: #4aff79;
-            padding: 7px 15px;
-            border-radius: 10px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .status-red {
-            background: #f39c12;
-            padding: 7px 15px;
-            border-radius: 10px;
-            font-weight: bold;
-        }
-
-        /* FOOTER */
-        footer {
-            text-align: left;
-            padding: 40px 20px;
-            margin-top: 40px;
-            background: #fff;
-        }
-
-        footer p {
-            margin: 4px 0;
-        }
-
-        .footer-title {
-            font-weight: bold;
-            font-size: 20px;
-        }
-
-        .footer-sub {
-            font-size: 13px;
-            margin-bottom: 20px;
-        }
-
-        .footer-grid {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
+            background: #4aff79; padding: 7px 15px; border-radius: 10px;
+            font-weight: bold; cursor: pointer;
         }
     </style>
 </head>
@@ -173,139 +95,189 @@
 
     <!-- HERO -->
     <div class="hero">
-        <img src="https://i.ibb.co/2YCNjzn/gropo-logo.png">
+        <img src="{{ asset('assets/img/logo.png') }}">
+
+        <!-- PREVIEW BOX -->
+        <div class="preview-box">
+            <img src="{{ asset('assets/img/lokasi.png') }}" id="previewImg">
+            <button class="btn-preview" id="previewBtn">Deteksi Lokasi Saya</button>
+        </div>
     </div>
 
-    <!-- SMALL PREVIEW -->
-    <div class="preview-box">
-        <img src="https://i.ibb.co/8z2TBqy/location-thumb.jpg">
-        <button class="btn-preview" id="previewBtn">Buka Lokasi</button>
-    </div>
-
-    <!-- MAIN MAP -->
+    <!-- MAP -->
     <div class="map-container">
         <div id="map"></div>
     </div>
 
-    <!-- POSKO LIST -->
-    <div class="list-container">
-        <div class="posko-item">
-            <div>
-                <b>Grobak Posko</b><br>3 - 5 menit
-            </div>
-            <div class="status-green">Tersedia</div>
-        </div>
+    <!-- LIST POSKO -->
+    <div class="list-container" id="poskoListContainer"></div>
 
-        <div class="posko-item">
-            <div>
-                <b>Grobak Posko</b><br>5 - 10 menit
-            </div>
-            <div class="status-green">Tersedia</div>
-        </div>
-
-        <div class="posko-item">
-            <div>
-                <b>Grobak Posko</b><br>5 - 10 menit
-            </div>
-            <div class="status-red">Tidak tersedia</div>
-        </div>
-    </div>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-title">Gropo</div>
-        <div class="footer-sub">Forward Together</div>
-
-        <div class="footer-grid">
-            <div>
-                <p><b>Features</b></p>
-                <p>Core features</p>
-                <p>Pro experience</p>
-                <p>Integrations</p>
-            </div>
-
-            <div>
-                <p><b>Learn more</b></p>
-                <p>Blog</p>
-                <p>Case studies</p>
-                <p>Customer stories</p>
-                <p>Best practices</p>
-            </div>
-
-            <div>
-                <p><b>Support</b></p>
-                <p>Contact</p>
-                <p>Support</p>
-                <p>Legal</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Leaflet JS -->
+    <!-- Leaflet -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
     <script>
-        // INIT MAP
-        var map = L.map('map').setView([-0.9471, 100.4172], 13); // Padang default
+        /* ===========================
+           DATA GROBAK / POSKO
+        ============================ */
+        const grobak = [
+            {
+                id: 1,
+                name: "Grobak Posko A",
+                alamat: "Jl. Merdeka No.12, Padang",
+                coords: [-0.939, 100.420],
+                img: "{{ asset('assets/img/lokasi.png') }}"
+            },
+            {
+                id: 2,
+                name: "Grobak Posko B",
+                alamat: "Jl. Khatib Sulaiman No.5, Padang",
+                coords: [-0.945, 100.415],
+                img: "{{ asset('assets/img/lokasi.png') }}"
+            },
+            {
+                id: 3,
+                name: "Grobak Posko C",
+                alamat: "Jl. Veteran No.88, Padang",
+                coords: [-0.954, 100.425],
+                img: "{{ asset('assets/img/lokasi.png') }}"
+            }
+        ];
 
-        // Tile layer
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19
-        }).addTo(map);
+        const listContainer = document.getElementById("poskoListContainer");
 
-        // USER ICON
-        var userIcon = L.icon({
-            iconUrl: "https://i.ibb.co/K2HqLjn/user-pin.png",
-            iconSize: [40, 40],
-            iconAnchor: [20, 40]
+        /* =========================================
+           TAMPILKAN DAFTAR POSKO
+        =========================================== */
+        grobak.forEach(g => {
+            listContainer.innerHTML += `
+                <div class="posko-item" id="posko${g.id}">
+                    <div>
+                        <b>${g.name}</b><br>
+                        <span class="distance">Lokasi belum terdeteksi</span>
+                    </div>
+
+                    <div class="status-green" onclick="gotoMap(${g.id})">
+                        Tersedia
+                    </div>
+                </div>`;
         });
 
-        var userMarker = L.marker([-0.9471, 100.4172], { icon: userIcon }).addTo(map);
+        /* ==================================================
+           FUNGSI PINDAH HALAMAN KE MAP DETAIL POSKO
+        ==================================================== */
+        function gotoMap(id) {
+            const g = grobak.find(x => x.id === id);
 
-        // TRACK USER LOCATION
-        if (navigator.geolocation) {
-            navigator.geolocation.watchPosition(
-                function (pos) {
-                    var lat = pos.coords.latitude;
-                    var lon = pos.coords.longitude;
+            const lat = g.coords[0];
+            const lng = g.coords[1];
+            const nama = encodeURIComponent(g.name);
+            const alamat = encodeURIComponent(g.alamat);
 
-                    userMarker.setLatLng([lat, lon]);
-                    map.setView([lat, lon]);
-                },
-                function (err) {
-                    console.log("GPS Error:", err);
-                },
-                { enableHighAccuracy: true }
-            );
-        } else {
-            alert("Browser tidak mendukung GPS.");
+            window.location.href =
+                `/admin/map1?lat=${lat}&lng=${lng}&nama=${nama}&alamat=${alamat}`;
         }
 
-        // STATIC POSKO MARKERS
-        var poskoIcon = L.icon({
+        /* ========================================
+           MAP AWAL
+        ========================================= */
+        var map = L.map('map').setView([-0.945, 100.420], 13);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+        const iconGrobak = L.icon({
             iconUrl: "https://i.ibb.co/WfxgR9D/posko-pin.png",
             iconSize: [45, 45],
             iconAnchor: [22, 45]
         });
 
-        var poskoList = [
-            [-0.939, 100.42],
-            [-0.945, 100.415],
-            [-0.954, 100.42]
-        ];
+        let userMarker = null;
+        let userLocation = null;
 
-        poskoList.forEach(p => L.marker(p, { icon: poskoIcon }).addTo(map));
+        /* ========================================
+           HITUNG JARAK
+        ========================================= */
+        function hitungJarak(lat1, lon1, lat2, lon2) {
+            const R = 6371e3;
+            const toRad = d => d * Math.PI / 180;
 
-        // REDIRECT WHEN POSKO AVAILABLE IS CLICKED
-        document.querySelectorAll('.status-green').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                window.location.href = 'map1';
+            const dLat = toRad(lat2 - lat1);
+            const dLon = toRad(lon2 - lon1);
+
+            const a =
+                Math.sin(dLat/2)**2 +
+                Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+                Math.sin(dLon/2)**2;
+
+            return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        }
+
+        /* ========================================
+           UPDATE JARAK USER KE POSKO
+        ========================================= */
+        function updateJarakUser(){
+            if(!userLocation) return;
+
+            grobak.forEach(g => {
+                const jarak = hitungJarak(
+                    userLocation.lat, userLocation.lng,
+                    g.coords[0], g.coords[1]
+                );
+
+                const textJarak = jarak < 1000 ?
+                    `${Math.round(jarak)} m` :
+                    `${(jarak / 1000).toFixed(2)} km`;
+
+                const menit = Math.round(jarak / 80);
+
+                document.querySelector(`#posko${g.id} .distance`).innerText =
+                    `Jarak: ${textJarak} • ${menit} menit`;
+            });
+        }
+
+        /* ========================================
+           TAMBAHKAN MARKER SETIAP POSKO
+        ========================================= */
+        grobak.forEach(g => {
+            const marker = L.marker(g.coords, { icon: iconGrobak }).addTo(map);
+
+            marker.on("click", () => {
+                document.querySelectorAll(".posko-item")
+                    .forEach(c => c.style.borderColor = "#ddd");
+
+                document.getElementById(`posko${g.id}`).style.borderColor = "#4aff79";
+
+                document.getElementById("previewImg").src = g.img;
+
+                document.getElementById(`posko${g.id}`).scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
             });
         });
 
-        // OPTIONAL: Redirect preview button
-        document.getElementById('previewBtn').addEventListener('click', function() {
-            window.location.href = 'map1/page3';
+        /* ========================================
+           DETEKSI LOKASI USER
+        ========================================= */
+        document.getElementById("previewBtn").addEventListener("click", () => {
+            navigator.geolocation.getCurrentPosition(
+                pos => {
+                    const { latitude, longitude } = pos.coords;
+
+                    userLocation = { lat: latitude, lng: longitude };
+
+                    if(userMarker) map.removeLayer(userMarker);
+
+                    userMarker = L.marker([latitude, longitude]).addTo(map)
+                        .bindPopup("Lokasi Anda").openPopup();
+
+                    map.setView([latitude, longitude], 14);
+
+                    updateJarakUser();
+                },
+                () => {
+                    alert("Gagal mendeteksi lokasi.");
+                }
+            );
         });
     </script>
 
