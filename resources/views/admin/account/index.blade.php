@@ -50,7 +50,7 @@
             <tr>
                <th width="5%" >#</th>
                <th>Nama Account</th>
-               <th>Username Account</th>
+               <th>email Account</th>
                <th class="text-center">Type account</th>
                <th class="table-plus datatable-nosort text-center">Action</th>
             </tr>
@@ -61,7 +61,7 @@
             <tr>
                <td class="text-center">{{$no++}}</td>
                <td>{{$data->name}}</td>
-               <td>{{$data->username}}</td>
+               <td>{{$data->email}}</td>
                <td class="text-center">
                   @if($data->level == '1')
                      <button class="btn btn-primary btn-xs">Admin</button>
@@ -94,14 +94,14 @@
             <div class="row">
                <div class="col-md-6">
                   <div class="form-group" style="font-size: 17px;">
-                     <label for="exampleInputUsername1">Nama Account</label>
+                     <label for="exampleInputemail1">Nama Account</label>
                      <input class="form-control" value="{{$data->name}}" readonly style="background-color: white;pointer-events: none;">
                   </div>
                </div>
                <div class="col-md-6">
                   <div class="form-group" style="font-size: 17px;">
-                     <label for="exampleInputUsername1">Username account</label>
-                     <input class="form-control" value="{{$data->username}}" readonly style="background-color: white;pointer-events: none;">
+                     <label for="exampleInputemail1">email account</label>
+                     <input class="form-control" value="{{$data->email}}" readonly style="background-color: white;pointer-events: none;">
                   </div>
                </div>
             </div>
@@ -131,14 +131,14 @@
             <div class="row">
                <div class="col-md-6">
                   <div class="form-group" style="font-size: 17px;">
-                     <label for="exampleInputUsername1">Nama Account</label>
+                     <label for="exampleInputemail1">Nama Account</label>
                      <input class="form-control" value="{{$data->name}}" readonly style="background-color: white;pointer-events: none;">
                   </div>
                </div>
                <div class="col-md-6">
                   <div class="form-group" style="font-size: 17px;">
-                     <label for="exampleInputUsername1">Username account</label>
-                     <input class="form-control" value="{{$data->username}}" readonly style="background-color: white;pointer-events: none;">
+                     <label for="exampleInputemail1">email account</label>
+                     <input class="form-control" value="{{$data->email}}" readonly style="background-color: white;pointer-events: none;">
                   </div>
                </div>
             </div>

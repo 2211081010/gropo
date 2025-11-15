@@ -1,0 +1,49 @@
+/* Header background */
+.header-bg {
+    background-color: #0b1a2e;
+    background-image: url('../img/header-texture.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 50vh;
+}
+
+/* Icon cards */
+.icon-card {
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1),
+                0 4px 6px -2px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.icon-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Card colors */
+.card-blue-light {
+    background-color: #f0f4f7;
+    border-radius: 1rem;
+}
+
+.card-blue-medium {
+    background-color: #e0f0ff;
+    border-radius: 1rem;
+}
+
+.card-blue-dark {
+    background-color: #007bff;
+    border-radius: 1rem;
+}
+
+/* Button */
+.btn-lanjut {
+    background-color: #6eff6e;
+    color: #1a202c;
+    font-weight: bold;
+    padding: 0.75rem 3rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-lanjut:hover {
+    background-color: #33ff33;
+}

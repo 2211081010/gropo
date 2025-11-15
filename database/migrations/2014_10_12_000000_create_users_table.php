@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('username')->unique();
+            $table->string('email')->unique();
             $table->string('password');
             $table->string('level');
             $table->string('status')->default('1');
@@ -26,9 +26,9 @@ class CreateUsersTable extends Migration
         });
 
         DB::table('users')->insert([
-            ['name' => 'Administrator', 'username' => 'admin', 'password' => bcrypt('Admin2025'), 'level' => '1'],
-            ['name' => 'Petugas', 'username' => 'petugas', 'password' => bcrypt('Petugas2025'), 'level' => '2'],
-            
+            ['name' => 'Administrator', 'email' => 'admin', 'password' => bcrypt('Admin2025'), 'level' => '1'],
+            ['name' => 'Petugas', 'email' => 'petugas', 'password' => bcrypt('Petugas2025'), 'level' => '2'],
+
         ]);
     }
 

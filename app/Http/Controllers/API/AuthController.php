@@ -14,16 +14,16 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'username' => 'required|string',
+            'email' => 'required|string',
             'password' => 'required|string',
         ]);
 
-        $credentials = $request->only('username', 'password');
+        $credentials = $request->only('email', 'password');
 
         if (!Auth::attempt($credentials)) {
             return response()->json([
                 'success' => false,
-                'message' => 'Username atau password salah',
+                'message' => 'email atau password salah',
             ], 401);
         }
 
