@@ -322,7 +322,7 @@
 <div class="main-card-wrapper">
     <img src="{{ asset('assets/img/logo.png') }}" alt="Gropo Logo">
     <h3>Grobak Posko</h3>
-    <button class="btn-mulai" onclick="window.location.href='{{ route('/admin/landing') }}'">Mulai</button>
+    <button class="btn-mulai" onclick="window.location.href='{{ route('landing') }}'">Mulai</button>
 </div>
 
 <!-- FOOTER -->
